@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admission_levels', function (Blueprint $table) {
+        Schema::create('admission_student_applying_and_programs', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 64);
-            $table->string('type', 64); // college , shs, shs-drive, second degree
+            $table->integer('student_information_id');
+            $table->integer('ref_id')->comment = 'student_type_id or desired_program_id';
+            $table->string('ref_type')->comment = 'student_type or desired_program';
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admission_levels');
+        Schema::dropIfExists('admission_student_applying_and_programs');
     }
 };

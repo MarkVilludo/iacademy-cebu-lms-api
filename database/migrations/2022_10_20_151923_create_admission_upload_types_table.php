@@ -13,47 +13,42 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admission_student_types', function (Blueprint $table) {
+        Schema::create('admission_upload_types', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('type');
+            $table->string('label');
+            $table->string('key');
             $table->timestamps();
+            $table->softDeletes();
         });
 
-        \App\Models\AdmissionStudentType::insert([
+        \App\Models\AdmissionUploadType::insert([
             [
-                'title' => 'UG- Freshman',
-                'type' => 'college',
+                'label' => 'Valid ID',
+                'key' => 'valid_id',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'title' => 'UG- Transferee',
-                'type' => 'college',
+                'label' => 'Photocopy of PSA Birth Certificate',
+                'key' => 'psa',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'title' => 'SHS- Freshman',
-                'type' => 'shs',
+                'label' => 'Transcript of Records (For transferees)',
+                'key' => 'tor',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'title' => 'SHS- Transferee',
-                'type' => 'shs',
+                'label' => 'Passport (Dual/Foreign)',
+                'key' => 'passport',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'title' => 'SHS- DRIVE',
-                'type' => 'shs-drive',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'title' => '2ND- DEGREE',
-                'type' => 'second_degree',
+                'label' => 'Proof of payment',
+                'key' => 'payment',
                 'created_at' => now(),
                 'updated_at' => now()
             ]
@@ -67,6 +62,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_types');
+        Schema::dropIfExists('admission_upload_types');
     }
 };
