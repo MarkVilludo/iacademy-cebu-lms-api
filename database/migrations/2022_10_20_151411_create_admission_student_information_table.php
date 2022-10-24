@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('admission_student_information', function (Blueprint $table) {
             $table->id();
+            $table->string('slug', 64);
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name')->nullable();

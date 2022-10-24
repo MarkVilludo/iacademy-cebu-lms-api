@@ -4,6 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\AdmissionStudentInformation;
+use App\Models\AdmissionStudentType;
+use App\Models\AdmissionDesiredProgram;
+use App\Models\AdmissionFile;
+use Illuminate\Support\Facades\Validator;
+use App\Mail\SubmitInformationMail;
+use App\Http\Resources\Admissions\StudentInformationResource;
+
+use DB, Mail;
 
 class AdmissionProcessController extends Controller
 {
@@ -80,9 +89,9 @@ class AdmissionProcessController extends Controller
             $studentInformation->save();
 
             //Email registrant
-            Mail::to($studentInformation)->send(
-                new SubmitInformationMail($studentInformation)
-            );
+            // Mail::to($studentInformation)->send(
+            //     new SubmitInformationMail($studentInformation)
+            // );
 
             $data['message'] = 'Success! Please check your email for the next step.';
             $data['success'] = true;

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class AdmissionStudentInformation extends Model
@@ -18,7 +19,7 @@ class AdmissionStudentInformation extends Model
     public function studentType()
     {
         return $this->belongsTo(
-            'App\Models\Admissions\AdmissionStudentType',
+            'App\Models\AdmissionStudentType',
             'type_id',
         );
     }
@@ -26,7 +27,7 @@ class AdmissionStudentInformation extends Model
     public function desiredProgram()
     {
         return $this->belongsTo(
-            'App\Models\Admissions\AdmissionDesiredProgram',
+            'App\Models\AdmissionDesiredProgram',
             'program_id',
         );
     }
@@ -34,7 +35,7 @@ class AdmissionStudentInformation extends Model
     public function studentTypes()
     {
         return $this->belongsToMany(
-            'App\Models\Admissions\AdmissionStudentType',
+            'App\Models\AdmissionStudentType',
             'admission_student_applying_and_programs',
             'student_information_id',
             'ref_id'
@@ -44,7 +45,7 @@ class AdmissionStudentInformation extends Model
     public function desiredPrograms()
     {
         return $this->belongsToMany(
-            'App\Models\Admissions\AdmissionDesiredProgram',
+            'App\Models\AdmissionDesiredProgram',
             'admission_student_applying_and_programs',
             'student_information_id',
             'ref_id'
