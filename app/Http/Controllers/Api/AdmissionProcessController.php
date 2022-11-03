@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AdmissionStudentInformation;
 use App\Models\AdmissionStudentType;
-use App\Models\AdmissionDesiredProgram;
+use App\Models\{AdmissionDesiredProgram, StudentInformationRequirement};
 use App\Models\AdmissionFile;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
@@ -23,11 +23,13 @@ class AdmissionProcessController extends Controller
         AdmissionStudentType $studentType,
         AdmissionDesiredProgram $desiredProgram,
         AdmissionFile $admissionFile,
+        StudentInformationRequirement $studentInformationRequirement,
     ) {
         $this->studentInformation = $studentInformation;
         $this->studentType = $studentType;
         $this->desiredProgram = $desiredProgram;
         $this->admissionFile = $admissionFile;
+        $this->studentInformationRequirement = $studentInformationRequirement;
     }
     public function getStudentTypes()
     {
@@ -232,35 +234,42 @@ class AdmissionProcessController extends Controller
 
         $updatedFields = [];
 
-        foreach (request('requirements') as $key => $requirement) {
-            $req = $this->studentInformationRequirement->firstOrCreate([
-                'student_information_id' => $studentInformation->id,
-                'admission_upload_type_id' => $requirement['upload_type_id'],
-            ]);
-            $req->admission_file_id = $requirement['file_id'];
-            $req->save();
+        // return request('requirements');
 
-            if ($req->wasRecentlyCreated) {
-                $updatedFields[] = $req->uploadType->label;
-            } else {
-                if ($req->getChanges()) {
-                    $updatedFields[] = $req->uploadType->label;
+        foreach (request('requirements') as $key => $requirement) {
+
+            $checkExist = $this->studentInformationRequirement->where('student_information_id', request('student_information_id'))
+                                                              ->where('admission_upload_type_id', $requirement['upload_type_id'])
+                                                              ->where('admission_file_id', $requirement['file_id'])
+                                                              ->first();
+            if (!$checkExist) {
+                $req = new $this->studentInformationRequirement;
+                $req->student_information_id = request('student_information_id');
+                $req->admission_upload_type_id = $requirement['upload_type_id'];
+                $req->admission_file_id = $requirement['file_id'];
+                $req->save();
+    
+                if ($req->wasRecentlyCreated) {
+                    $updatedFields[] = $req->uploadType ? $req->uploadType->label : '';
+                } else {
+                    if ($req->getChanges()) {
+                        $updatedFields[] = $req->uploadType->label;
+                    }
                 }
             }
         }
+        // $admission = config('emails.admission_staging');
 
-        $admission = config('emails.admission_staging');
+        // if (config('app.env') == 'live') {
+        //     $admission = config('emails.admission');
+        // }
 
-        if (config('app.env') == 'live') {
-            $admission = config('emails.admission');
-        }
-
-        if (count($updatedFields)) {
-           //Email admissions
-            Mail::to($admission)->send(
-                new SubmitRequirementsMail($studentInformation, $updatedFields)
-            );
-        }
+        // if (count($updatedFields)) {
+        //    //Email admissions
+        //     Mail::to($admission)->send(
+        //         new SubmitRequirementsMail($studentInformation, $updatedFields)
+        //     );
+        // }
 
         $data['message'] = 'Successfully submitted';
         $data['success'] = true;
