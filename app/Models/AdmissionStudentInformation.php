@@ -93,4 +93,9 @@ class AdmissionStudentInformation extends Model
     {
         return $this->hasMany('App\Models\AcceptanceLetterAttachment', 'student_information_id');
     }
+
+    public function uploadedRequirements()
+    {
+        return $this->hasMany('App\Models\StudentInformationRequirement', 'student_information_id');
+    }
 }

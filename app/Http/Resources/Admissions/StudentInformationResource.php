@@ -41,7 +41,8 @@ class StudentInformationResource extends JsonResource
             'acceptance_letter' => auth()->check() ? $this->acceptance_letter : '',
             'acceptance_letter_attachments' => auth()->check() ? AcceptanceAttachmentResource::collection($this->whenLoaded('acceptanceAttachments')) : '',
             'acceptance_letter_sent_date' => auth()->check() ? ($this->acceptance_letter_sent_date ? $this->acceptance_letter_sent_date->format('F d, Y') : '') : '',
-            'slug' => $this->slug
+            'slug' => $this->slug,
+            'uploaded_requirements' => $this->uploadedRequirements ? UploadedRequirementResource::collection($this->uploadedRequirements) : [],
         ];
     }
 
