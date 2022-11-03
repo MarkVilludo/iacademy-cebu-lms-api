@@ -32,8 +32,8 @@ class SubmitInformationMail extends Mailable
     public function build()
     {
         return $this->view('emails.admissions.submit_information')
-                    ->from('markanthony.villudo@gmail.com', 'iACADEMY Portal')
+                    ->from('markanthony.villudo@gmail.com', 'iACADEMY Cebu Portal')
                     ->subject('iACADEMY Admissions: Online Application - ' . $this->information->first_name . ' ' . $this->information->last_name)
-                    ->replyTo('admissions@iacademy.edu.ph', 'iACADEMY Portal');
+                    ->replyTo('admissions@iacademy.edu.ph', 'iACADEMY Cebu Portal');
     }
 }

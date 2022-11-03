@@ -35,7 +35,6 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('{id}/update-remarks', [AdmissionProcessController::class, 'updateInformationRemarks']);
         Route::post('{id}/upload-attachments', [AdmissionProcessController::class, 'uploadAttachments']);
         Route::post('{id}/send-acceptance-mail', [AdmissionProcessController::class, 'sendAcceptanceMail']);
-        Route::delete('attachments/{id}', [AdmissionProcessController::class, 'deleteAttachment']);
     });
 });
 
