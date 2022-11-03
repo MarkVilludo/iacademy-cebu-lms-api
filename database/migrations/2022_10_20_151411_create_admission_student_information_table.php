@@ -30,6 +30,7 @@ return new class extends Migration
             $table->longtext('interview_remarks')->nullable();
             $table->string('status')->default('New Applicant')->comment = 'New Applicant, For Interview, For Reservation, For Enrollment, Enrolled, Failed, For Guidance Counselling';
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     /**

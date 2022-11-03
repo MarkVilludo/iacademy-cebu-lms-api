@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('admission_files', function (Blueprint $table) {
             $table->id();
+            $table->text('filename');
+            $table->string('orig_filename', 128);
+            $table->string('filetype', 32);
             $table->timestamps();
         });
     }

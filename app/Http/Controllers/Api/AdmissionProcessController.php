@@ -10,7 +10,7 @@ use App\Models\AdmissionDesiredProgram;
 use App\Models\AdmissionFile;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
-use App\Http\Resources\Admissions\StudentInformationResource;
+use App\Http\Resources\Admissions\{StudentInformationResource, AdmissionFileResource};
 
 use DB, Mail;
 
@@ -186,6 +186,7 @@ class AdmissionProcessController extends Controller
 
         $data['message'] = 'Successfully uploaded';
         $data['success'] = true;
+        $data['path'] = url('storage/admission_files/'.$filename.'.'.$extension);
         $data['data'] = new AdmissionFileResource($file);
         return response()->json($data);
     }
@@ -288,9 +289,9 @@ class AdmissionProcessController extends Controller
         return response()->json($data);
     }
 
-    public function updateInformationStatus($id)
+    public function updateInformationStatus($slug)
     {
-        $studentInformation = $this->studentInformation->find($id);
+        $studentInformation = $this->studentInformation->where('slug', $slug)->first();
 
         if (!$studentInformation) {
             $data['success'] = false;
@@ -305,6 +306,8 @@ class AdmissionProcessController extends Controller
 
         $studentInformation->status = request('status');
         $studentInformation->update();
+
+        if (request('status') == '')
 
         $data['message'] = 'Successfully updated.';
         $data['success'] = true;

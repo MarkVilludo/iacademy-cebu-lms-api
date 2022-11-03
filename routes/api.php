@@ -23,19 +23,19 @@ Route::group(['prefix' => 'v1'], function() {
     Route::group(['prefix' => 'admissions/student-info'], function() {
         Route::get('types', [AdmissionProcessController::class, 'getStudentTypes']);
         Route::get('programs', [AdmissionProcessController::class, 'getDesiredPrograms']);
-        Route::get('{status}/status', [AdmissionProcessController::class, 'getInformations'])->middleware('auth:api');
+        Route::get('{status}/status', [AdmissionProcessController::class, 'getInformations']);
         Route::get('{status}/download', [AdmissionProcessController::class, 'download']);
         Route::get('{slug}', [AdmissionProcessController::class, 'viewInformation']);
         Route::post('/', [AdmissionProcessController::class, 'storeInformation']);
         Route::post('upload', [AdmissionProcessController::class, 'uploadRequirements']);
         Route::delete('files/{id}', [AdmissionProcessController::class, 'deleteFile']);
         Route::post('requirements', [AdmissionProcessController::class, 'saveRequirements']);
-        Route::post('{id}', [AdmissionProcessController::class, 'updateInformation'])->middleware('auth:api');
-        Route::post('{id}/update-status', [AdmissionProcessController::class, 'updateInformationStatus'])->middleware('auth:api');
-        Route::post('{id}/update-remarks', [AdmissionProcessController::class, 'updateInformationRemarks'])->middleware('auth:api');
-        Route::post('{id}/upload-attachments', [AdmissionProcessController::class, 'uploadAttachments'])->middleware('auth:api');
-        Route::post('{id}/send-acceptance-mail', [AdmissionProcessController::class, 'sendAcceptanceMail'])->middleware('auth:api');
-        Route::delete('attachments/{id}', [AdmissionProcessController::class, 'deleteAttachment'])->middleware('auth:api');
+        Route::post('{id}', [AdmissionProcessController::class, 'updateInformation']);
+        Route::post('{slug}/update-status', [AdmissionProcessController::class, 'updateInformationStatus']);
+        Route::post('{id}/update-remarks', [AdmissionProcessController::class, 'updateInformationRemarks']);
+        Route::post('{id}/upload-attachments', [AdmissionProcessController::class, 'uploadAttachments']);
+        Route::post('{id}/send-acceptance-mail', [AdmissionProcessController::class, 'sendAcceptanceMail']);
+        Route::delete('attachments/{id}', [AdmissionProcessController::class, 'deleteAttachment']);
     });
 });
 
