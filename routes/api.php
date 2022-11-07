@@ -43,8 +43,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('modes', [ModePaymentController::class, 'index']);
         Route::post('webhook', [PaynamicsWebhookController::class, 'webhook'])->name('webhook');
     });
-    Route::post('cancel-payment-transactions','PaymentDetailController@cancelTransaction')->name('cancel-payment');
-
+    Route::post('/cancel-payment-transactions', [PaymentGatewayController::class, 'cancelTransaction']);
 });
 
 
