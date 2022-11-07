@@ -11,6 +11,7 @@ use App\Models\AdmissionFile;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
 use App\Http\Resources\Admissions\{StudentInformationResource, AdmissionFileResource};
+use App\Mail\Admissions\{SendAcceptanceLetterMail, SubmitRequirementsMail};
 
 use DB, Mail;
 
@@ -90,10 +91,10 @@ class AdmissionProcessController extends Controller
             $studentInformation->slug = \Str::uuid();
             $studentInformation->save();
 
-            //Email registrant
-            // Mail::to($studentInformation)->send(
-            //     new SubmitInformationMail($studentInformation)
-            // );
+            // Email registrant
+            Mail::to($studentInformation)->send(
+                new SubmitInformationMail($studentInformation)
+            );
 
             $data['message'] = 'Success! Please check your email for the next step.';
             $data['success'] = true;
@@ -234,8 +235,6 @@ class AdmissionProcessController extends Controller
 
         $updatedFields = [];
 
-        // return request('requirements');
-
         foreach (request('requirements') as $key => $requirement) {
 
             $checkExist = $this->studentInformationRequirement->where('student_information_id', request('student_information_id'))
@@ -258,18 +257,18 @@ class AdmissionProcessController extends Controller
                 }
             }
         }
-        // $admission = config('emails.admission_staging');
+        $admission = config('settings.admission_staging');
 
-        // if (config('app.env') == 'live') {
-        //     $admission = config('emails.admission');
-        // }
+        if (config('app.env') == 'live') {
+            $admission = config('settings.admission');
+        }
 
-        // if (count($updatedFields)) {
-        //    //Email admissions
-        //     Mail::to($admission)->send(
-        //         new SubmitRequirementsMail($studentInformation, $updatedFields)
-        //     );
-        // }
+        if (count($updatedFields)) {
+           //Email admissions
+            Mail::to($admission)->send(
+                new SubmitRequirementsMail($studentInformation, $updatedFields)
+            );
+        }
 
         $data['message'] = 'Successfully submitted';
         $data['success'] = true;

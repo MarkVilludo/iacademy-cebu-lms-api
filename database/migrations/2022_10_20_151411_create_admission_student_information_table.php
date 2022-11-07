@@ -28,6 +28,8 @@ return new class extends Migration
             $table->integer('type_id')->nullable();
             $table->integer('program_id')->nullable();
             $table->longtext('interview_remarks')->nullable();
+            $table->longtext('acceptance_letter')->nullable();
+            $table->string('acceptance_letter_sent_date', 32)->nullable();
             $table->string('status')->default('New Applicant')->comment = 'New Applicant, For Interview, For Reservation, For Enrollment, Enrolled, Failed, For Guidance Counselling';
             $table->timestamps();
             $table->softDeletes();
