@@ -28,8 +28,8 @@ class SubmitRequirementsMail extends Mailable
     public function build()
     {
         return $this->view('emails.admissions.submit_requirements')
-                    ->from('markanthony.villudo@gmail.com', 'iACADEMY Portal')
+                    ->from('markanthony.villudo@gmail.com', 'iACADEMY Cebu Portal')
                     ->subject('iACADEMY Admissions: A new requirement has been submitted by an applicant - ' . $this->information->first_name . ' ' . $this->information->last_name)
-                    ->replyTo('no-reply@iacademy.edu.ph', 'iACADEMY Portal');
+                    ->replyTo('no-reply@iacademy.edu.ph', 'iACADEMY Cebu Portal');
     }
 }
