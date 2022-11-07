@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AdmissionProcessController;
+use App\Http\Controllers\Api\{AdmissionProcessController, ModePaymentController};
+use App\Http\Controllers\Api\{PaymentGatewayController, PaynamicsWebhookController};
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,16 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('{id}/upload-attachments', [AdmissionProcessController::class, 'uploadAttachments']);
         Route::post('{id}/send-acceptance-mail', [AdmissionProcessController::class, 'sendAcceptanceMail']);
     });
+    
+    Route::group(['prefix' => 'payments'], function() {
+        Route::post('/', [PaymentGatewayController::class, 'pay']);
+        Route::get('modes', [ModePaymentController::class, 'index']);
+        Route::post('webhook', [PaynamicsWebhookController::class, 'webhook'])->name('webhook');
+    });
+    Route::post('cancel-payment-transactions','PaymentDetailController@cancelTransaction')->name('cancel-payment');
+
 });
+
 
 
 Route::get('student-informations-admissions/{slug}', [AdmissionProcessController::class,  'viewInformationForAdmission'])->middleware('auth:api');
