@@ -429,6 +429,32 @@ class PaymentGatewayController extends Controller
         return response()->json($data, 200);
     }
 
+    public function modeRelease()
+    {
+        $data['message'] = 'List of mode release';
+        $data['success'] = true;
+        $data['data'] = config('finance.MODE_RELEASES');
+
+        return response()->json($data, 200);
+    }
+
+    public function deliveryArea()
+    {
+        $data['data'] = RegionResource::collection($this->region->all());
+        $data['success'] = true;
+        $data['message'] = 'List of region.';
+
+        return response()->json($data, 200);
+    }
+
+    public function cities($code)
+    {
+        $data['data'] = @CityResource::collection($this->city->where('region_code', $code)->get());
+        $data['success'] = true;
+        $data['message'] = 'List of cities under region';
+
+        return response()->json($data, 200);
+    }
      //cancel payment transactions
      public function cancelTransaction(Request $request)
      {
