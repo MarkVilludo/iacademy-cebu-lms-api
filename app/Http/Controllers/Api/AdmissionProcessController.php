@@ -273,23 +273,13 @@ class AdmissionProcessController extends Controller
         foreach (request('requirements') as $key => $requirement) {
 
             $checkExist = $this->studentInformationRequirement->where('student_information_id', request('slug'))
-                                                              ->where('admission_upload_type_id', $requirement['upload_type_id'])
                                                               ->where('admission_file_id', $requirement['file_id'])
                                                               ->first();
             if (!$checkExist) {
                 $req = new $this->studentInformationRequirement;
                 $req->student_information_id = request('student_information_id');
-                $req->admission_upload_type_id = $requirement['upload_type_id'];
                 $req->admission_file_id = $requirement['file_id'];
                 $req->save();
-    
-                if ($req->wasRecentlyCreated) {
-                    $updatedFields[] = $req->uploadType ? $req->uploadType->label : '';
-                } else {
-                    if ($req->getChanges()) {
-                        $updatedFields[] = $req->uploadType->label;
-                    }
-                }
             }
         }
         $admission = config('settings.admission_staging');
@@ -298,7 +288,7 @@ class AdmissionProcessController extends Controller
             $admission = config('settings.admission');
         }
 
-        if (count($updatedFields)) {
+        if (count(request('requirements'))) {
            //Email admissions
             Mail::to($admission)->send(
                 new SubmitRequirementsMail($studentInformation, $updatedFields)

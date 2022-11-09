@@ -36,7 +36,7 @@ return new class extends Migration
             ],
             [
                 'label' => 'Digital Copy Photo (2x2)',
-                'key' => 'tor',
+                'key' => '2x2',
                 'created_at' => now(),
                 'updated_at' => now()
             ]

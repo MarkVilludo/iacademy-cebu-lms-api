@@ -22,38 +22,26 @@ return new class extends Migration
 
         \App\Models\AdmissionStudentType::insert([
             [
-                'title' => 'UG- Freshman',
+                'title' => 'Sofware Engineering',
                 'type' => 'college',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'title' => 'UG- Transferee',
+                'title' => 'Game Development',
                 'type' => 'college',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'title' => 'SHS- Freshman',
-                'type' => 'shs',
+                'title' => 'Animation',
+                'type' => 'college',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'title' => 'SHS- Transferee',
-                'type' => 'shs',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'title' => 'SHS- DRIVE',
-                'type' => 'shs-drive',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'title' => '2ND- DEGREE',
-                'type' => 'second_degree',
+                'title' => 'Multimedia Arts and Design',
+                'type' => 'college',
                 'created_at' => now(),
                 'updated_at' => now()
             ]

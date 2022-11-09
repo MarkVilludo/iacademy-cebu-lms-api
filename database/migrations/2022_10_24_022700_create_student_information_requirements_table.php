@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('student_information_requirements', function (Blueprint $table) {
             $table->id();
             $table->integer('student_information_id');
-            $table->integer('admission_upload_type_id');
             $table->integer('admission_file_id');
             $table->timestamps();
             $table->softDeletes();
