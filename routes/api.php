@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\{AdmissionProcessController, ModePaymentController};
 use App\Http\Controllers\Api\{PaymentGatewayController, PaynamicsWebhookController};
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -49,6 +50,8 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('webhook', [PaynamicsWebhookController::class, 'webhook'])->name('webhook');
     });
     Route::post('cancel-payment-transactions', [PaymentGatewayController::class, 'cancelTransaction'])->name('cancel-payment');
+    Route::post('payments-webhook', [PaynamicsWebhookController::class, 'webhook'])->name('payments-webhook');
+    
 });
 
 

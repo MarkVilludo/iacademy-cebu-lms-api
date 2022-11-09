@@ -50,6 +50,10 @@ class PaymentDetail extends Model
         }
     }
 
+    public function studentInfo()
+    {
+        return $this->belongsTo(AdmissionStudentInformation::class, 'id', 'student_information_id');
+    }
     public function mode()
     {
         return $this->hasOne(FinancePaymentMode::class, 'id', 'mode_of_payment_id');

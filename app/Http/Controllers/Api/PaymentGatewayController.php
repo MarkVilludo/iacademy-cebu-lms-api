@@ -384,8 +384,6 @@ class PaymentGatewayController extends Controller
 
             $paymentDetail->update();
 
-
-
             if ($pmethod == 'onlinebanktransfer' || $pmethod == 'wallet') {
                 $data['response_paynamics'] = $responsePaynamics;
                 $data['success'] = true;
