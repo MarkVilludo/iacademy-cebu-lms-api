@@ -23,8 +23,8 @@ return new class extends Migration
 
         \App\Models\AdmissionUploadType::insert([
             [
-                'label' => 'Valid ID',
-                'key' => 'valid_id',
+                'label' => 'Current School ID',
+                'key' => 'school_id',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -35,20 +35,8 @@ return new class extends Migration
                 'updated_at' => now()
             ],
             [
-                'label' => 'Transcript of Records (For transferees)',
+                'label' => 'Digital Copy Photo (2x2)',
                 'key' => 'tor',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'label' => 'Passport (Dual/Foreign)',
-                'key' => 'passport',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'label' => 'Proof of payment',
-                'key' => 'payment',
                 'created_at' => now(),
                 'updated_at' => now()
             ]

@@ -216,8 +216,10 @@ class AdmissionProcessController extends Controller
 
         $file = new $this->admissionFile();
         $file->filename = $filename;
+        $file->type = request('type');
         $file->orig_filename =  $filenameWithExt;
         $file->filetype = $extension;
+        $file->path = url('storage/admission_files/'.$filename.'.'.$extension);
         $file->save();
 
         $data['message'] = 'Successfully uploaded';

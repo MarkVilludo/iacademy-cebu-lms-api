@@ -14,11 +14,6 @@ class UploadedRequirementResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
-        return [
-            'id' => $this->id,
-            'file_path' => @$this->file ? $this->file->getUrlAttribute() : '',
-            'file_type' => @$this->uploadType ? $this->uploadType->label: '',
-        ];
+        return parent::toArray($request);
     }
 }

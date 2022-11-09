@@ -37,8 +37,6 @@ class StudentInformationResource extends JsonResource
             'type_id' => $this->studentType ? $this->studentType->id : '',
             'program_id' => $this->desiredProgram ? $this->desiredProgram->id : '',
             'upload_types' => $uploadTypes,
-            'enrollment_upload_types' => $this->getEnrollmentUploadTypes()['enrollment_upload_types'],
-            'enrollment_upload_types_old' => $this->getEnrollmentUploadTypes()['enrollment_upload_types_merge'],
             'interview_remarks' => $this->interview_remarks,
             'acceptance_letter' => $this->acceptance_letter,
             'acceptance_letter_attachments' => AcceptanceAttachmentResource::collection($this->whenLoaded('acceptanceAttachments')),
@@ -52,90 +50,7 @@ class StudentInformationResource extends JsonResource
     //         $keys = ['waiver', 'psa', 'recommendation_form', 'form_128', 'initial_fee'];
     //     }
 
-    public function getEnrollmentUploadTypes()
-    {
-        if ($this->studentType->id == 1) { //UG- Freshman
-            $keys = ['waiver', 'psa', 'recommendation_form', 'form_128', 'initial_fee'];
-        }
-
-        if ($this->studentType->id == 2) { //UG- Transferee
-            $keys = ['waiver', 'tor', 'certificate_of_transfer', 'psa', 'recommendation_form', 'id_picture', 'initial_fee'];
-        }
-
-        if ($this->studentType->id == 3) { //SHS- Freshman
-            $keys = ['waiver', 'certificate_of_transfer', 'psa', 'recommendation_form', 'id_picture', 'esc_voucher', 'form_128', 'initial_fee'];
-        }
-
-        if ($this->studentType->id == 4) { //SHS- Transferee
-            $keys = ['waiver', 'certificate_of_transfer', 'psa', 'recommendation_form', 'id_picture', 'form_128', 'grade_11_curriculum', 'course_description', 'esc_voucher', 'initial_fee'];
-        }
-
-        if ($this->studentType->id == 5) { //SHS- DRIVE
-            $keys = ['waiver', 'psa', 'recommendation_form', 'form_128', 'initial_fee'];
-        }
-
-        if ($this->studentType->id == 7) { //2ND- DEGREE
-            $keys = ['waiver', 'tor', 'certificate_of_transfer', 'psa', 'recommendation_form', 'id_picture', 'initial_fee'];
-        }
-
-        $ugOrganicKeys = ['waiver', 'id_picture'];
-
-        $foreignStudKeys = ['waiver', 'phs', 'passport', 'i-card', 'student_visa', 'proof_of_adequate', 'scholastic_records', 'psa', 'good_moral_certificate', 'initial_fee'];
-
-        $studentUploadTypes = $this->studentType ? AdmissionUploadTypeResource::collection(
-            AdmissionUploadType::whereIn('key', $keys)->get()
-        ) : collect([]);
-
-        $ugOrganicKeysNew = [];
-
-        foreach ($ugOrganicKeys as $key => $ugOrganicKey) {
-            if (!in_array($ugOrganicKey, $keys)) {
-                $ugOrganicKeysNew[] = $ugOrganicKey;
-            }
-        }
-
-        $organicUploadTypes = AdmissionUploadTypeResource::collection(AdmissionUploadType::whereIn('key', $ugOrganicKeysNew)->get());
-
-        $foreignUploadTypesNew = [];
-
-        foreach ($foreignStudKeys as $key => $foreignUploadType) {
-            if (!in_array($foreignUploadType, $keys)) {
-                $foreignUploadTypesNew[] = $foreignUploadType;
-            }
-        }
-
-        $foreignUploadTypes = $this->studentType ? AdmissionUploadTypeResource::collection(AdmissionUploadType::whereIn('key', $foreignUploadTypesNew)->get()) : collect([]);
-
-        $enrollmentUploadTypes = [
-            [
-
-                'student_type' => $this->studentType->title,
-                'upload_types' => count($this->getAdmissionFile($studentUploadTypes)) ? $this->getAdmissionFile($studentUploadTypes) : [],
-            ],
-            [
-                'student_type' => 'For UG Organic',
-                'upload_types' => count($this->getAdmissionFile($organicUploadTypes)) ? $this->getAdmissionFile($organicUploadTypes) : [],
-            ],
-            [
-                'student_type' => 'For Foreign Students',
-                'upload_types' => count($this->getAdmissionFile($foreignUploadTypes)) ? $this->getAdmissionFile($foreignUploadTypes) : [],
-            ]
-        ];
-
-        $data['enrollment_upload_types'] = $enrollmentUploadTypes;
-
-        $mergeUploadTypes = [];
-
-        foreach ($enrollmentUploadTypes as $key => $enrollmentUploadType) {
-            foreach ($enrollmentUploadType['upload_types'] as $key => $uploadType) {
-                $mergeUploadTypes[] = $uploadType;
-            }
-        }
-
-        $data['enrollment_upload_types_merge'] = $mergeUploadTypes;
-
-        return $data;
-    }
+   
 
     public function getUploadTypes($keys)
     {
