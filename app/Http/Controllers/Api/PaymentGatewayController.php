@@ -404,7 +404,7 @@ class PaymentGatewayController extends Controller
                 $data['success'] = true;
 
                 $this->paymentDetail->sendEmailStudent($paymentDetail);
-                // $data['data'] = $newPaymentDetails;
+                $data['data'] = $newPaymentDetails;
             }
 
             if (@$responsePaynamics['response_advise']) {
