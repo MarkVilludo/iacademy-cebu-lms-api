@@ -86,7 +86,7 @@ class PaymentDetail extends Model
 
         $data = array("payment" => $paymentDetails, 'logo' => $logo);
 
-        Mail::send('emails.finance.notify_requestor_success_payment', $data, function ($message) use ($toName, $toEmail, $subjectData) {
+        Mail::send('emails.notify_requestor_success_payment', $data, function ($message) use ($toName, $toEmail, $subjectData) {
             $message->to($toEmail, $toName)
                     ->subject($subjectData)
                     ->replyTo('finance@iacademy.edu.ph');
