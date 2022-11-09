@@ -256,7 +256,7 @@ class AdmissionProcessController extends Controller
 
     public function saveRequirements()
     {
-        $studentInformation = $this->studentInformation->find(request('student_information_id'));
+        $studentInformation = $this->studentInformation->find(request('slug'));
 
         if (!$studentInformation) {
             $data['success'] = false;
@@ -269,7 +269,7 @@ class AdmissionProcessController extends Controller
 
         foreach (request('requirements') as $key => $requirement) {
 
-            $checkExist = $this->studentInformationRequirement->where('student_information_id', request('student_information_id'))
+            $checkExist = $this->studentInformationRequirement->where('student_information_id', request('slug'))
                                                               ->where('admission_upload_type_id', $requirement['upload_type_id'])
                                                               ->where('admission_file_id', $requirement['file_id'])
                                                               ->first();
