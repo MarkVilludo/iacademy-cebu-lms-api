@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('filename');
             $table->string('type', 32)->nullable();
+            $table->string('slug', 64)->nullable();
             $table->text('path')->nullable();
             $table->string('orig_filename', 128);
             $table->string('filetype', 32);
