@@ -58,12 +58,12 @@ class PaymentDetail extends Model
     }
     public function mode()
     {
-        return $this->hasOne(FinancePaymentMode::class, 'id', 'mode_of_payment_id');
+        return $this->hasOne(PaymentMode::class, 'id', 'mode_of_payment_id');
     }
 
     public function orders()
     {
-        return $this->hasMany(FinancePaymentOrderItem::class, 'payment_detail_id', 'id');
+        return $this->hasMany(PaymentOrderItem::class, 'payment_detail_id', 'id');
     }
 
     public function sendEmailAfterPayment($paymentDetails)
