@@ -208,25 +208,42 @@ class AdmissionProcessController extends Controller
             return response()->json($data);
         }
 
+
+        //check exist in requirements
+
+        $checkExist = $this->admissionFile->where('type', request('type'))
+                                          ->where('slug', request('slug')) 
+                                          ->first();
+
         $filenameWithExt = request()->file('file')->getClientOriginalName();
         $filename = now()->format('dmYHis');
         $extension = request()->file('file')->getClientOriginalExtension();
         $fileNameToStore = $filename . '.' . $extension;
         $path = request()->file('file')->storeAs('public/admission_files', $fileNameToStore);
 
-        $file = new $this->admissionFile();
-        $file->filename = $filename;
-        $file->type = request('type');
-        $file->slug = request('slug');
-        $file->orig_filename =  $filenameWithExt;
-        $file->filetype = $extension;
-        $file->path = url('storage/admission_files/'.$filename.'.'.$extension);
-        $file->save();
+        if (!$checkExist) {
+            $file = new $this->admissionFile();
+            $file->filename = $filename;
+            $file->type = request('type');
+            $file->slug = request('slug');
+            $file->orig_filename =  $filenameWithExt;
+            $file->filetype = $extension;
+            $file->path = url('storage/admission_files/'.$filename.'.'.$extension);
+            $file->save();
+
+            $data['data'] = new AdmissionFileResource($file);
+        } else {
+            $checkExist->orig_filename =  $filenameWithExt;
+            $checkExist->filename = $filename;
+            $checkExist->filetype = $extension;
+            $checkExist->path = url('storage/admission_files/'.$filename.'.'.$extension);
+            $checkExist->update();
+
+            $data['data'] = new AdmissionFileResource($checkExist);
+        }
 
         $data['message'] = 'Successfully uploaded';
         $data['success'] = true;
-        $data['path'] = url('storage/admission_files/'.$filename.'.'.$extension);
-        $data['data'] = new AdmissionFileResource($file);
         return response()->json($data);
     }
 
