@@ -54,7 +54,7 @@ class PaymentDetail extends Model
 
     public function studentInfo()
     {
-        return $this->belongsTo(AdmissionStudentInformation::class, 'id', 'student_information_id');
+        return $this->belongsTo(AdmissionStudentInformation::class, 'student_information_id', 'id');
     }
     public function mode()
     {
