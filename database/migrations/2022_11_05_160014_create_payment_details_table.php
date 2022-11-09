@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('payment_details', function (Blueprint $table) {
             $table->id();
             $table->string('student_number', 32)->nullable();
+            $table->integer('student_information_id')->nullable();
             $table->string('first_name', 64);
             $table->string('middle_name', 64)->nullable();
             $table->string('last_name', 64);

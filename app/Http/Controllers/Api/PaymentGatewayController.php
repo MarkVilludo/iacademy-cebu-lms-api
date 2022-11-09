@@ -69,6 +69,7 @@ class PaymentGatewayController extends Controller
             $newPaymentDetails->request_id = $requestId;
             $newPaymentDetails->slug = \Str::uuid();
             $newPaymentDetails->description = $request->description;
+            $newPaymentDetails->student_information_id = $request->student_information_id;
             $newPaymentDetails->student_number = $request->student_number;
             $newPaymentDetails->first_name = $request->first_name;
             $newPaymentDetails->middle_name = $request->middle_name;
@@ -343,7 +344,7 @@ class PaymentGatewayController extends Controller
             $postData = http_build_query($arrPostData); // Raw PHP array
             $postData = json_encode($arrPostData); // Only USE this when request JSON data.
             
-            return $mixResponse = $this->executeCurl(array(
+            $mixResponse = $this->executeCurl(array(
                 CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_HTTPGET => true,
