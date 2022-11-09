@@ -42,6 +42,7 @@ class StudentInformationResource extends JsonResource
             'acceptance_letter_attachments' => AcceptanceAttachmentResource::collection($this->whenLoaded('acceptanceAttachments')),
             'acceptance_letter_sent_date' => $this->acceptance_letter_sent_date ? $this->acceptance_letter_sent_date->format('F d, Y') : '',
             'slug' => $this->slug,
+            'logs' => $this->logs,
             'uploaded_requirements' => $this->uploadedRequirements ? UploadedRequirementResource::collection($this->uploadedRequirements) : [],
         ];
     }

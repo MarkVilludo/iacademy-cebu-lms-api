@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\AdmissionStudentInformation;
 use App\Models\AdmissionStudentType;
 use App\Models\{AdmissionDesiredProgram, StudentInformationRequirement};
-use App\Models\AdmissionFile;
+use App\Models\{AdmissionFile, StudentInfoStatusLog};
 use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
 use App\Http\Resources\Admissions\{StudentInformationResource, AdmissionFileResource};
@@ -358,11 +358,14 @@ class AdmissionProcessController extends Controller
         $studentInformation->status = request('status');
         $studentInformation->update();
 
+        StudentInfoStatusLog::storeLogs($studentInformation->id, request('status'), request('admissions_officer'), request('remarks'));
+
         if (request('status') == 'For Interview') {
             Mail::to($studentInformation->email)->send(
                 new ForInterviewMail($studentInformation)
             );
         }
+
 
         $data['message'] = 'Successfully updated.';
         $data['success'] = true;
