@@ -37,6 +37,11 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('{id}/upload-attachments', [AdmissionProcessController::class, 'uploadAttachments']);
         Route::post('{id}/send-acceptance-mail', [AdmissionProcessController::class, 'sendAcceptanceMail']);
     });
+
+    Route::group(['prefix' => 'admissions/applications'], function() {
+        Route::get('/', [AdmissionProcessController::class, 'index']);
+
+    });
     
     Route::group(['prefix' => 'payments'], function() {
         Route::post('/', [PaymentGatewayController::class, 'pay']);

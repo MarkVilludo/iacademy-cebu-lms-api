@@ -33,6 +33,37 @@ class AdmissionProcessController extends Controller
         $this->admissionFile = $admissionFile;
         $this->studentInformationRequirement = $studentInformationRequirement;
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        //
+        $searchField = $request->search_field;
+        $searchData = $request->search_data;
+        $orderBy = $request->order_by;
+
+        $paginateCount = 10;
+        if ($request->count_content) {
+            $paginateCount = $request->count_content;
+        }
+
+        $applications = $this->studentInformation->filterByField($searchField, $searchData)
+                                ->orderByField($searchField, $orderBy)
+                                ->paginate($paginateCount);
+
+        if ($applications) {
+            return StudentInformationResource::collection($applications);
+            $data['message'] = 'Shows student application available.';
+        } else {
+            $data['message'] = 'No student application available';
+        }
+
+        return response()->json($data, 200);
+    }
     public function getStudentTypes()
     {
         return response()->json([

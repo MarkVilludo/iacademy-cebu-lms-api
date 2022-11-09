@@ -12,6 +12,16 @@ class AdmissionStudentInformation extends Model
 
     protected $guarded = [];
 
+    public function scopeOrderByField($query, $field, $orderBy)
+    {
+        if ($field && $orderBy) {
+            //if field is status
+            return $query->orderBy($field, $orderBy);
+        } else {
+            return $query->orderBy('created_at', 'DESC');
+        }
+    }
+
     protected $casts = [
         'acceptance_letter_sent_date' => 'date'
     ];
