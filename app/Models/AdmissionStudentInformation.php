@@ -118,4 +118,8 @@ class AdmissionStudentInformation extends Model
     {
         return $this->hasMany('App\Models\PaymentDetail', 'student_information_id');
     }
+    public function schedule()
+    {
+        return $this->belongsTo('App\Models\AdmissionInterviewSchedule', 'id', 'student_information_id');
+    }
 }

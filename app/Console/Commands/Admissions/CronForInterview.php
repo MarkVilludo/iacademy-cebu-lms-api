@@ -37,7 +37,6 @@ class CronForInterview extends Command
         $applications = AdmissionStudentInformation::where('status', 'For Interview')
                                                     ->get();
 
-
         //7AM (24hrs) assuming every day at 7AM innotify
         foreach ($applications as $application) {
             $checkIfHasSched = AdmissionInterviewSchedule::where('student_information_id', $application->id)->first();
