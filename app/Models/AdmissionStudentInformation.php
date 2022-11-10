@@ -18,7 +18,7 @@ class AdmissionStudentInformation extends Model
             //if field is status
             return $query->orderBy($field, $orderBy);
         } else {
-            return $query->orderBy('created_at', 'DESC');
+            return $query->orderBy('created_at', 'ASC');
         }
     }
 
