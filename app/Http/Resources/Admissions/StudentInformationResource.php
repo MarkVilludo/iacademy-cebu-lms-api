@@ -44,8 +44,8 @@ class StudentInformationResource extends JsonResource
             'slug' => $this->slug,
             'logs' => $this->logs,
             'schedule_date' => $this->schedule ? $this->schedule->date : '',
-            'schedule_time_from' => $this->schedule ? $this->schedule->time_from : '',
-            'schedule_time_to' => $this->schedule ? $this->schedule->time_to : '',
+            'schedule_time_from' => $this->schedule ? date('h:i A' , strtotime($this->schedule->time_from)) : '',
+            'schedule_time_to' => $this->schedule ? date('h:i A' , strtotime($this->schedule->time_to)) : '',
             'payments' => $this->payments,
             'uploaded_requirements' => $this->uploadedRequirements ? UploadedRequirementResource::collection($this->uploadedRequirements) : [],
         ];
