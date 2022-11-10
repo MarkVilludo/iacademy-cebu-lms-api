@@ -34,7 +34,11 @@ class PaynamicsWebhookController extends Controller
                 $paymentDetails->is_sent_email = 1;
 
                 //update student info
-                $paymentDetails->studentInfo->status = 'Waiting For Interview';
+                if ($paymentDetails->studentInfo->status == 'For Reservation') {
+                    $paymentDetails->studentInfo->status = 'Reserved';
+                } else {
+                    $paymentDetails->studentInfo->status = 'Waiting For Interview';
+                }
                 $paymentDetails->studentInfo->update();
 
             } elseif ($response['response_message'] == 'Transaction Expired') {
