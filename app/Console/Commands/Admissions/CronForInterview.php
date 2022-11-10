@@ -3,7 +3,7 @@
 namespace App\Console\Commands\Admissions;
 
 use Illuminate\Console\Command;
-use App\Models\AdmissionStudentInformation;
+use App\Models\{AdmissionStudentInformation, AdmissionInterviewSchedule};
 use App\Mail\Admissions\{NotifiyForInterviewMail};
 use Mail;
 
@@ -37,11 +37,16 @@ class CronForInterview extends Command
         $applications = AdmissionStudentInformation::where('status', 'For Interview')
                                                     ->get();
 
+
         //7AM (24hrs) assuming every day at 7AM innotify
         foreach ($applications as $application) {
-            Mail::to($application)->send(
-                new NotifiyForInterviewMail($application)
-            );
+            $checkIfHasSched = AdmissionInterviewSchedule::where('student_information_id', $application->id)->first();
+
+            if (!$checkIfHasSched) {
+                Mail::to($application)->send(
+                    new NotifiyForInterviewMail($application)
+                );
+            }
         }
     }
 }
