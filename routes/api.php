@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\{AdmissionProcessController, ModePaymentController};
 use App\Http\Controllers\Api\{PaymentGatewayController, PaynamicsWebhookController};
+use App\Http\Controllers\Api\{InterviewScheduleController};
 
 
 /*
@@ -41,7 +42,11 @@ Route::group(['prefix' => 'v1'], function() {
 
     Route::group(['prefix' => 'admissions/applications'], function() {
         Route::get('/', [AdmissionProcessController::class, 'index']);
+    });
 
+    Route::group(['prefix' => 'interview-schedules'], function() {
+        Route::get('/{date}', [InterviewScheduleController::class, 'index']);
+        Route::post('/', [InterviewScheduleController::class, 'store']);
     });
     
     Route::group(['prefix' => 'payments'], function() {
