@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
 use App\Http\Resources\Admissions\{StudentInformationResource, AdmissionFileResource};
 use App\Mail\Admissions\{SendAcceptanceLetterMail, SubmitRequirementsMail};
-use App\Mail\Admissions\{ForInterviewMail};
+use App\Mail\Admissions\{ForInterviewMail, ForReservationMail};
 
 use DB, Mail;
 
@@ -363,6 +363,10 @@ class AdmissionProcessController extends Controller
         if (request('status') == 'For Interview') {
             Mail::to($studentInformation->email)->send(
                 new ForInterviewMail($studentInformation)
+            );
+        } else (request('status') == 'For Interview') {
+            Mail::to($studentInformation->email)->send(
+                new ForReservationMail($studentInformation)
             );
         }
 

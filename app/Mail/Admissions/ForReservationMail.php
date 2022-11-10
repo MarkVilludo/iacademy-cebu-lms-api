@@ -29,7 +29,7 @@ class ForReservationMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.admissions.for_interview')
+        return $this->view('emails.admissions.acceptance_letter')
                     ->from('markanthony.villudo@gmail.com', 'iACADEMY Cebu Portal')
                     ->subject('iACADEMY Admissions: Online Application For Interview - ' . $this->information->first_name . ' ' . $this->information->last_name)
                     ->replyTo('admissions@iacademy.edu.ph', 'iACADEMY Cebu Portal');
