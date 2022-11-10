@@ -364,7 +364,7 @@ class AdmissionProcessController extends Controller
             Mail::to($studentInformation->email)->send(
                 new ForInterviewMail($studentInformation)
             );
-        } else if (request('status') == 'For Interview') {
+        } else if (request('status') == 'For Reservation') {
             Mail::to($studentInformation->email)->send(
                 new ForReservationMail($studentInformation)
             );
