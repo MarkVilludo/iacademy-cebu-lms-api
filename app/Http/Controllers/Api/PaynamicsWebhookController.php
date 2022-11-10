@@ -53,8 +53,7 @@ class PaynamicsWebhookController extends Controller
                 // This request has expired. Pleare re-process your order should you wish to pursue with your request
                 $this->paymentDetail->sendEmailExpired($paymentDetails);
 
-                //update student info
-                $paymentDetails->studentInfo->status = 'Expired Payment';
+                StudentInfoStatusLog::storeLogs($paymentDetails->studentInfo->id, $paymentDetails->studentInfo->status, '', 'Transaction Expired');
                 $paymentDetails->studentInfo->update();
             }  else {
                 //transaction is expired.
