@@ -44,8 +44,6 @@ class PaynamicsWebhookController extends Controller
 
                 $paymentDetails->studentInfo->update();
 
-
-
             } elseif ($response['response_message'] == 'Transaction Expired') {
                 //transaction is expired.
                 $paymentDetails->status = 'expired';
