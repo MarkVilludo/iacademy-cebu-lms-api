@@ -113,4 +113,9 @@ class AdmissionStudentInformation extends Model
     {
         return $this->hasMany('App\Models\StudentInfoStatusLog', 'student_information_id');
     }
+
+    public function payments()
+    {
+        return $this->hasMany('App\Models\PaymentDetail', 'student_information_id');
+    }
 }
