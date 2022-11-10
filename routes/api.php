@@ -54,6 +54,4 @@ Route::group(['prefix' => 'v1'], function() {
     
 });
 
-
-
 Route::get('student-informations-admissions/{slug}', [AdmissionProcessController::class,  'viewInformationForAdmission'])->middleware('auth:api');
