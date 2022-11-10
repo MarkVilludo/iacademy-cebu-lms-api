@@ -20,7 +20,7 @@
                 It is not required but we encourage you to let your parent/s join the interview as well.
 
                 <br><br>
-                <a href="http://localhost:3310/cebu-iac-lms/site/applicant_calendar?slug={{$information->slug}}" target="_blank">calendar link
+                <a href="http://localhost:3310/cebu-iac-lms/site/applicant_calendar/{{$information->slug}}" target="_blank">calendar link
                     here</a>
                 <br><br><br>
 
