@@ -370,7 +370,6 @@ class AdmissionProcessController extends Controller
             );
         }
 
-
         $data['message'] = 'Successfully updated.';
         $data['success'] = true;
         $data['data'] = new StudentInformationResource($studentInformation);

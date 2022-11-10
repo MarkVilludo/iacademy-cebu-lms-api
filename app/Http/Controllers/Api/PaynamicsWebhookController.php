@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\PaymentDetail;
 use Illuminate\Http\Request;
+use App\Models\{StudentInfoStatusLog};
 
 class PaynamicsWebhookController extends Controller
 {
@@ -39,7 +40,11 @@ class PaynamicsWebhookController extends Controller
                 } else {
                     $paymentDetails->studentInfo->status = 'Waiting For Interview';
                 }
+                StudentInfoStatusLog::storeLogs($paymentDetails->studentInfo->id, $paymentDetails->studentInfo->status, '', '');
+
                 $paymentDetails->studentInfo->update();
+
+
 
             } elseif ($response['response_message'] == 'Transaction Expired') {
                 //transaction is expired.
