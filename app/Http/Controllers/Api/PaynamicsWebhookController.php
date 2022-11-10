@@ -37,12 +37,13 @@ class PaynamicsWebhookController extends Controller
                 //update student info
                 if ($paymentDetails->studentInfo->status == 'For Reservation') {
                     $paymentDetails->studentInfo->status = 'Reserved';
-                } else {
+                    StudentInfoStatusLog::storeLogs($paymentDetails->studentInfo->id, $paymentDetails->studentInfo->status, '', '');
+                    $paymentDetails->studentInfo->update();
+                } else if ($paymentDetails->studentInfo->status == 'New') {
                     $paymentDetails->studentInfo->status = 'Waiting For Interview';
+                    StudentInfoStatusLog::storeLogs($paymentDetails->studentInfo->id, $paymentDetails->studentInfo->status, '', '');
+                    $paymentDetails->studentInfo->update();
                 }
-                StudentInfoStatusLog::storeLogs($paymentDetails->studentInfo->id, $paymentDetails->studentInfo->status, '', '');
-
-                $paymentDetails->studentInfo->update();
 
             } elseif ($response['response_message'] == 'Transaction Expired') {
                 //transaction is expired.
