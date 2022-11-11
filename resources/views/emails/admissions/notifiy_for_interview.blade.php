@@ -21,7 +21,7 @@
                 Changing journey begin, TODAY!
 
                 <br><br>
-                <a href="http://localhost:3310/cebu-iac-lms/site/applicant_calendar/{{$information->slug}}" target="_blank">calendar link
+                <a href="http://103.225.39.200/cebu-iac-lms/site/applicant_calendar/{{$information->slug}}" target="_blank">calendar link
                     here</a>
                 <br><br><br>
 

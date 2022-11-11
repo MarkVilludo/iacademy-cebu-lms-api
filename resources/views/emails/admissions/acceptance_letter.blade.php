@@ -16,7 +16,7 @@
                 Acceptance Letter here.....
 
                 <br><br>
-                <a href="http://localhost:3310/cebu-iac-lms/site/admissions_student_payment_reservation/{{$information->slug}}"
+                <a href="http://103.225.39.200/cebu-iac-lms/site/admissions_student_payment_reservation/{{$information->slug}}"
                     target="_blank">Reserve your slot TODAY</a>
                 <br><br><br>
             </div>
