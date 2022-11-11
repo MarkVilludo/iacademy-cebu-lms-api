@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        DB::table('payment_modes')->truncate();
 
         DB::table('payment_modes')->insert([
             [
@@ -28,7 +29,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "GCASH",
                 "pchannel" => "gc",
                 "pmethod" => "wallet",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/gcash.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/gcash.jpg",
                 "type" => "percentage",
                 "charge" => "2.00",
                 "is_nonbank" => false
@@ -38,7 +39,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "COINS",
                 "pchannel" => "coins_ph",
                 "pmethod" => "wallet",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/coinsph.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/coinsph.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => false
@@ -48,7 +49,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "ECPAY",
                 "pchannel" => "ecpay_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/ecpay.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/ecpay.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -58,7 +59,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "CLIQQ",
                 "pchannel" => "cliqq_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/cliqq.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/cliqq.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -68,7 +69,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "DA5",
                 "pchannel" => "da5_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/da5.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/da5.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -78,7 +79,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "EXPRESSPAY",
                 "pchannel" => "expresspay_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/expresspay.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/expresspay.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -88,7 +89,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "DP",
                 "pchannel" => "dp_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/dp.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/dp.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -98,7 +99,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "7\/11",
                 "pchannel" => "711_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/711.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/711.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -108,7 +109,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "CEBUANA",
                 "pchannel" => "cebuana_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/cebuana.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/cebuana.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -118,7 +119,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "SBILLS",
                 "pchannel" => "smbills_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/sm.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/sm.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -128,7 +129,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "TRUEMONEY",
                 "pchannel" => "truemoney_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/truemoney.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/truemoney.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -138,7 +139,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "POSIBLE",
                 "pchannel" => "posible_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/posible.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/posible.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -148,7 +149,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "ETAP",
                 "pchannel" => "etap_ph",
                 "pmethod" => "nonbank_otc",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/etap.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/etap.jpg",
                 "type" => "fixed",
                 "charge" => "25.00",
                 "is_nonbank" => true
@@ -158,7 +159,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "RCBC",
                 "pchannel" => "br_rcbc_ph",
                 "pmethod" => "onlinebanktransfer",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/rcbc.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/rcbc.jpg",
                 "type" => "percentage",
                 "charge" => "2.00",
                 "is_nonbank" => false
@@ -168,7 +169,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "PNB",
                 "pchannel" => "br_pnb_ph",
                 "pmethod" => "onlinebanktransfer",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/pnb.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/pnb.jpg",
                 "type" => "percentage",
                 "charge" => "2.00",
                 "is_nonbank" => false
@@ -178,7 +179,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "BDO",
                 "pchannel" => "br_bdo_ph",
                 "pmethod" => "onlinebanktransfer",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/bdo.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/bdo.jpg",
                 "type" => "percentage",
                 "charge" => "2.00",
                 "is_nonbank" => false
@@ -188,7 +189,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "UBP",
                 "pchannel" => "ubp_online",
                 "pmethod" => "onlinebanktransfer",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/unionbank.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/unionbank.jpg",
                 "type" => "percentage",
                 "charge" => "2.00",
                 "is_nonbank" => false
@@ -198,7 +199,7 @@ class DatabaseSeeder extends Seeder
                 "name" => "BPI",
                 "pchannel" => "bpi_online",
                 "pmethod" => "onlinebanktransfer",
-                "image_url" => "http:/103.225.39.201:8081/images/finance_online_payment/bpi.jpg",
+                "image_url" => "http://103.225.39.201:8081/images/finance_online_payment/bpi.jpg",
                 "type" => "percentage",
                 "charge" => "2.00",
                 "is_nonbank" => false
