@@ -126,7 +126,7 @@ class PaymentGatewayController extends Controller
             
             $requestId = $newPaymentDetails->request_id;
             $notURL = route('webhook');
-            $responseURL = url('/');
+            $responseURL = "http://103.225.39.200/cebu-iac-lms/site/awesome";
             $cancelURL = $modePayment->pmethod == 'onlinebanktransfer' ? 'http://103.225.39.200/cebu-iac-lms/site/awesome' : route('cancel-payment');
             $pmethod = $modePayment->pmethod;
             $paymentAction = $modePayment->pmethod;
