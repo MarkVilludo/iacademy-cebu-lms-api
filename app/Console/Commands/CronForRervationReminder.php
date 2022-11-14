@@ -40,7 +40,7 @@ class CronForRervationReminder extends Command
         foreach($applications as $application) {
             
 
-            $start = $application->updated_at 
+            $start = $application->updated_at;
             $end = date('Y-m-d');
 
             $diff = abs(strtotime($start) - strtotime($end));

@@ -45,6 +45,7 @@ class AdmissionProcessController extends Controller
         $searchField = $request->search_field;
         $searchData = $request->search_data;
         $orderBy = $request->order_by;
+        $sortField = $request->sort_field;
 
         $paginateCount = 10;
         if ($request->count_content) {
@@ -52,7 +53,7 @@ class AdmissionProcessController extends Controller
         }
 
         $applications = $this->studentInformation->filterByField($searchField, $searchData)
-                                ->orderByField($searchField, $orderBy)
+                                ->orderByField($sortField, $orderBy)
                                 ->paginate($paginateCount);
 
         if ($applications) {
