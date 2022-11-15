@@ -16,7 +16,7 @@
                 <br><br>
 
                 We have evaluated your initial requirements and you are qualified to proceed to the next step. Please
-                select in the calendar below a schedule that you can conduct your Interview with our Admissions Officer.
+                select in the Calendar below a schedule that you can conduct your interview with our Admissions Officer.
                 It is not required but we encourage you to let your parent/s join the interview as well.
 
                 <br><br>
