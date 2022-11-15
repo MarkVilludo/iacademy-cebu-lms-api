@@ -34,12 +34,13 @@ Route::group(['prefix' => 'v1'], function() {
         Route::delete('files/{id}', [AdmissionProcessController::class, 'deleteFile']);
         Route::post('requirements', [AdmissionProcessController::class, 'saveRequirements']);
         Route::post('{id}', [AdmissionProcessController::class, 'updateInformation']);
-        Route::post('{slug}/update-status', [AdmissionProcessController::class, 'updateInformationStatus']);
-        Route::get('test-api', [AdmissionProcessController::class, 'testAccessApi']);        
+        Route::post('{slug}/update-status', [AdmissionProcessController::class, 'updateInformationStatus']);        
         Route::post('{id}/update-remarks', [AdmissionProcessController::class, 'updateInformationRemarks']);
         Route::post('{id}/upload-attachments', [AdmissionProcessController::class, 'uploadAttachments']);
         Route::post('{id}/send-acceptance-mail', [AdmissionProcessController::class, 'sendAcceptanceMail']);
     });
+
+    Route::get('test-api', [AdmissionProcessController::class, 'testAccessApi']);        
 
     Route::group(['prefix' => 'admissions/applications'], function() {
         Route::get('/', [AdmissionProcessController::class, 'index']);
