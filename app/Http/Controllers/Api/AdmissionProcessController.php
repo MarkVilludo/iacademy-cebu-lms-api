@@ -390,7 +390,7 @@ class AdmissionProcessController extends Controller
 
         $data['message'] = 'Success';
         $data['success'] = true;
-        $data['data'] = $response->data;
+        $data['data'] = $response->body();
         return response()->json($data);
     }
 
