@@ -35,6 +35,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('requirements', [AdmissionProcessController::class, 'saveRequirements']);
         Route::post('{id}', [AdmissionProcessController::class, 'updateInformation']);
         Route::post('{slug}/update-status', [AdmissionProcessController::class, 'updateInformationStatus']);
+        Route::post('test-api', [AdmissionProcessController::class, 'testAccessApi']);        
         Route::post('{id}/update-remarks', [AdmissionProcessController::class, 'updateInformationRemarks']);
         Route::post('{id}/upload-attachments', [AdmissionProcessController::class, 'uploadAttachments']);
         Route::post('{id}/send-acceptance-mail', [AdmissionProcessController::class, 'sendAcceptanceMail']);
