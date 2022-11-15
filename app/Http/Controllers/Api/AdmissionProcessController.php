@@ -370,7 +370,29 @@ class AdmissionProcessController extends Controller
             Mail::to($studentInformation->email)->send(
                 new ForReservationMail($studentInformation)
             );
-        }else if (request('status') == 'For Enrollment') {
+        }else if (request('status') == 'For Enrollment') {            
+
+            $response = Http::post('http://172.16.80.20/cebu-iac-lms/admissionsV1/add_new_student', [
+                'strFirstname' => $studentInformation->first_name,
+                'strLastname' => $studentInformation->last_name,
+                'strMiddlename' => $studentInformation->middle_name,
+                'strEmail' => $studentInformation->email,
+                'date_of_birth' => $studentInformation->date_of_birth,
+                'strAddress' => $studentInformation->address,
+                // 'status' => $studentInformation->status,
+                // 'school' => $studentInformation->school,
+                // 'mobile_number' => $studentInformation->mobile_number,
+                // 'tel_number' => $studentInformation->tel_number,
+                // 'student_type_title' => $studentInformation->student_type_title,
+                // 'student_type' => $studentInformation->student_type,
+                // 'desired_program' => $studentInformation->desired_program,
+                // 'type_id' => $studentInformation->type_id,
+                'intProgramID' => $studentInformation->program_id,
+            ]);
+
+            $data = $response->body();
+        
+
             Mail::to($studentInformation->email)->send(
                 new ForEnrollmentMail($studentInformation)
             );
@@ -382,17 +404,6 @@ class AdmissionProcessController extends Controller
         return response()->json($data);
     }
 
-    public function testAccessApi(){
-        $response = Http::post('http://172.16.80.20/cebu-iac-lms/admissionsV1/add_new_student', [
-            'Firstname' => 'Steve',
-            'role' => 'Network Administrator',
-        ]);
-
-        $data['message'] = 'Success';
-        $data['success'] = true;
-        $data['data'] = $response->body();
-        return response()->json($data);
-    }
 
     public function updateInformationRemarks($id)
     {

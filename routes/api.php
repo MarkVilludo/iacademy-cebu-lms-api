@@ -28,7 +28,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('programs', [AdmissionProcessController::class, 'getDesiredPrograms']);
         Route::get('{status}/status', [AdmissionProcessController::class, 'getInformations']);
         Route::get('{status}/download', [AdmissionProcessController::class, 'download']);
-        Route::get('{slug}', [AdmissionProcessController::class, 'viewInformation']);
+        Route::get('{slug}', [AdmissionProcessController::class, 'viewInformation']);        
         Route::post('/', [AdmissionProcessController::class, 'storeInformation']);
         Route::post('upload', [AdmissionProcessController::class, 'uploadRequirements']);
         Route::delete('files/{id}', [AdmissionProcessController::class, 'deleteFile']);
@@ -40,7 +40,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('{id}/send-acceptance-mail', [AdmissionProcessController::class, 'sendAcceptanceMail']);
     });
 
-    Route::get('test-api', [AdmissionProcessController::class, 'testAccessApi']);        
+            
 
     Route::group(['prefix' => 'admissions/applications'], function() {
         Route::get('/', [AdmissionProcessController::class, 'index']);
