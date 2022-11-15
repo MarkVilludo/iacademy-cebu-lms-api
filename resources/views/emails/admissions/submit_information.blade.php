@@ -45,7 +45,7 @@
                             Scanned copy of 2x2 ID photo
                         </li>
                         <li>
-                            Scanned copy of proof of payment for the 700 Php application fee
+                            Scanned copy of proof of payment for the 500 Php application fee
                         </li>
                     </ol>
                 </div>
