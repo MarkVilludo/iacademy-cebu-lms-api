@@ -369,6 +369,10 @@ class AdmissionProcessController extends Controller
             Mail::to($studentInformation->email)->send(
                 new ForReservationMail($studentInformation)
             );
+        }else if (request('status') == 'For Enrollment') {
+            Mail::to($studentInformation->email)->send(
+                new ForEnrollmentMail($studentInformation)
+            );
         }
 
         $data['message'] = 'Successfully updated.';
