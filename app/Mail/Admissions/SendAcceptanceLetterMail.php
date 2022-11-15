@@ -34,7 +34,7 @@ class SendAcceptanceLetterMail extends Mailable
         $mail = $this->view('emails.admissions.acceptance_letter')
                     ->from('markanthony.villudo@gmail.com', 'iACADEMY Cebu LMS')
                     ->subject('iACADEMY Cebu Admissions: Acceptance Letter')
-                    ->replyTo('admissions@iacademy.edu.ph', 'iACADEMY Cebu LMS');
+                    ->replyTo('admissionscebu@iacademy.edu.ph', 'iACADEMY Cebu LMS');
 
         if (!empty($this->information->acceptanceAttachments)) {
             foreach ($this->information->acceptanceAttachments as $k => $v) {

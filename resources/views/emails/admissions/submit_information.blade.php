@@ -67,7 +67,7 @@
             <div>Sincerely,</div>
             <br><br>
             <strong>iACADEMY Admissions</strong><br>
-            <a href="admissions@iacademy.edu.ph">admissions@iacademy.edu.ph</a>
+            <a href="admissionscebu@iacademy.edu.ph">admissionscebu@iacademy.edu.ph</a>
             <br>
         </div>
         <img style="display:block;margin:0 auto; width:800px" width="800" src="https://i.ibb.co/M9SntyB/footer.png"

@@ -60,7 +60,7 @@ return [
 
     //admission module
     'admission' => [
-        'email' => 'admissions@iacademy.edu.ph'
+        'email' => 'admissionscebu@iacademy.edu.ph'
     ],
 
     'admission_staging' => [
