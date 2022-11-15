@@ -387,7 +387,7 @@ class AdmissionProcessController extends Controller
             'role' => 'Network Administrator',
         ]);
 
-        return response()->json($data);
+        return response()->json($response);
     }
 
     public function updateInformationRemarks($id)
