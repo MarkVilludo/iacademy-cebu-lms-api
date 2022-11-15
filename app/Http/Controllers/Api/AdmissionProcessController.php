@@ -384,13 +384,13 @@ class AdmissionProcessController extends Controller
 
     public function testAccessApi(){
         
-        $response = Http::post('http://103.225.39.200/cebu-iac-lms/admissionsV1/add_new_student', [
-            'Firstname' => 'Steve',
-            'role' => 'Network Administrator',
-        ]);
+        // $response = Http::post('http://103.225.39.200/cebu-iac-lms/admissionsV1/add_new_student', [
+        //     'Firstname' => 'Steve',
+        //     'role' => 'Network Administrator',
+        // ]);
         $data['message'] = "test"; 
         $data['success'] = true;
-        $data['data'] = $response;
+        $data['data'] = "test";
         return response()->json($data);
     }
 
