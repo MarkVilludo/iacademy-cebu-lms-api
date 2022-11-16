@@ -377,7 +377,7 @@ class AdmissionProcessController extends Controller
             );
         }else if (request('status') == 'For Enrollment') {            
 
-            $response = Http::post('http://172.16.80.20/cebu-iac-lms/admissionsV1/add_new_student', [
+            $response = Http::asForm()->post('http://172.16.80.20/cebu-iac-lms/admissionsV1/add_new_student', [
                 'strFirstname' => $studentInformation->first_name,
                 'strLastname' => $studentInformation->last_name,
                 'strMiddlename' => $studentInformation->middle_name,
