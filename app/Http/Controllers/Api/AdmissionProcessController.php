@@ -390,7 +390,7 @@ class AdmissionProcessController extends Controller
                 'intProgramID' => $studentInformation->program_id,
             ]);
 
-            $data = $response->body();
+            $data['response'] = $response->body();
         
 
             Mail::to($studentInformation->email)->send(
