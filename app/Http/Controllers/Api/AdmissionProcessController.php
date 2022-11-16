@@ -357,8 +357,8 @@ class AdmissionProcessController extends Controller
             $studentInformation->program_id = request('program_id');
         }
 
-        $studentInformation->status = request('status');
-        $studentInformation->update();
+        // $studentInformation->status = request('status');
+        // $studentInformation->update();
 
         StudentInfoStatusLog::storeLogs($studentInformation->id, request('status'), request('admissions_officer'), request('remarks'));
 
@@ -370,6 +370,7 @@ class AdmissionProcessController extends Controller
             $response = Http::get('http://172.16.80.20/cebu-iac-lms/unity/get_active_sem');              
 
             $data['response'] = $response->body();            
+            $data['response'] = json_decode($data['response']);
 
             // Mail::to($studentInformation->email)->send(
             //     new ForReservationMail($studentInformation, $data['response']['active_sem'])
