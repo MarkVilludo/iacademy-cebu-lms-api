@@ -38,11 +38,15 @@
                 </ol>
                 For questions, contact us at +63 917 521 6633 / +63 917 526 6633, send us a message on Facebook,
                 or email us at admissionscebu@iacademy.edu.ph
+                <br /><br />
                 Once again, congratulations!
-
+                <br /><br />
+                Regards,                
                 <br><br>
-                <a href="http://103.225.39.200/cebu-iac-lms/site/admissions_student_payment_reservation/{{$information->slug}}"
-                    target="_blank">Reserve your slot TODAY</a>
+                
+                <span style="font-weight: bold">RAQUEL P. WONG</span><br />
+                Chief Operating Officer<br />
+                iACADEMY                
                 <br><br><br>
             </div>
             <img style="display:block;margin:0 auto; width:800px" width="800" src="https://i.ibb.co/M9SntyB/footer.png"
