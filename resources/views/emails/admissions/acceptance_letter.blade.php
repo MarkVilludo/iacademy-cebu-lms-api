@@ -22,7 +22,7 @@
                 Hi Ms/Mr. {!! $information->last_name !!}!
                 
                 Congratulations! Based on your exam results and interview, we are pleased to inform you that you are
-                admitted to {{ $information->desired_program }} for {{ @$activeSem->enumSem }} Term for Academic Year {{ @$activeSem->strYearStart }}-{{ @$activeSem->strYearEnd }}.
+                admitted to {{ $information->program }} for {{ @$activeSem->enumSem }} Term for Academic Year {{ @$activeSem->strYearStart }}-{{ @$activeSem->strYearEnd }}.
                 The next step of your application is to secure your slot for the next school year and submit the following requirements:
                 <ol>                
                     <li>Original copy of Grade 10 Report Card with principal's signature and promotion to Grade 11.</li>
