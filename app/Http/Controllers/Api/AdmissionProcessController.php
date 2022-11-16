@@ -119,7 +119,7 @@ class AdmissionProcessController extends Controller
             $studentInformation->mobile_number = request('mobile_number');
             $studentInformation->tel_number = request('tel_number');
             $studentInformation->type_id = request('type_id');
-            $studentInformation->program_id = request('program_id');
+            $studentInformation->program = request('program');
             $studentInformation->address = request('address');
             $studentInformation->status = 'New';
             $studentInformation->date_of_birth = request('date_of_birth');
