@@ -370,10 +370,11 @@ class AdmissionProcessController extends Controller
             $response = Http::get('http://172.16.80.20/cebu-iac-lms/unity/get_active_sem');              
 
             $data['response'] = $response->body();
+            print_r($data['response']); 
 
-            Mail::to($studentInformation->email)->send(
-                new ForReservationMail($studentInformation, $data['response']['active_sem'])
-            );
+            // Mail::to($studentInformation->email)->send(
+            //     new ForReservationMail($studentInformation, $data['response']['active_sem'])
+            // );
         }else if (request('status') == 'For Enrollment') {            
 
             $response = Http::post('http://172.16.80.20/cebu-iac-lms/admissionsV1/add_new_student', [
