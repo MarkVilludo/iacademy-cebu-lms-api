@@ -357,8 +357,8 @@ class AdmissionProcessController extends Controller
             $studentInformation->program_id = request('program_id');
         }
 
-        $studentInformation->status = request('status');
-        $studentInformation->update();
+        // $studentInformation->status = request('status');
+        // $studentInformation->update();
 
         StudentInfoStatusLog::storeLogs($studentInformation->id, request('status'), request('admissions_officer'), request('remarks'));
 
@@ -398,9 +398,9 @@ class AdmissionProcessController extends Controller
             $data['response'] = $response->body();
         
 
-            Mail::to($studentInformation->email)->send(
-                new ForEnrollmentMail($studentInformation)
-            );
+            // Mail::to($studentInformation->email)->send(
+            //     new ForEnrollmentMail($studentInformation)
+            // );
         }
 
         $data['message'] = 'Successfully updated.';
