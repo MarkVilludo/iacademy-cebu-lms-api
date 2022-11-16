@@ -385,6 +385,7 @@ class AdmissionProcessController extends Controller
                 'dteBirthDate' => $studentInformation->date_of_birth,
                 'strAddress' => $studentInformation->address,
                 'intProgramID' => $studentInformation->type_id,
+                'slug' => $studentInformation->slug,
                 // 'status' => $studentInformation->status,
                 // 'school' => $studentInformation->school,
                 // 'mobile_number' => $studentInformation->mobile_number,
