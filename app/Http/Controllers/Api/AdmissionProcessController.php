@@ -394,7 +394,7 @@ class AdmissionProcessController extends Controller
         
 
             Mail::to($studentInformation->email)->send(
-                new ForEnrollmentMail($studentInformation)
+                new ForEnrollmentMail($studentInformation, $data['response']['active_sem'])
             );
         }
 

@@ -17,9 +17,11 @@ class ForReservationMail extends Mailable
      * @return void
      */
     public $information;
-    public function __construct($information)
+    public $activeSem;
+    public function __construct($information, $activeSem)
     {
         $this->information = $information;
+        $this->$activeSem = $activeSem;
     }
 
     /**
