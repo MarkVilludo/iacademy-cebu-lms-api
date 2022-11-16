@@ -384,6 +384,7 @@ class AdmissionProcessController extends Controller
                 'strEmail' => $studentInformation->email,
                 'date_of_birth' => $studentInformation->date_of_birth,
                 'strAddress' => $studentInformation->address,
+                'intProgramID' => $studentInformation->type_id,
                 // 'status' => $studentInformation->status,
                 // 'school' => $studentInformation->school,
                 // 'mobile_number' => $studentInformation->mobile_number,
@@ -391,8 +392,7 @@ class AdmissionProcessController extends Controller
                 // 'student_type_title' => $studentInformation->student_type_title,
                 // 'student_type' => $studentInformation->student_type,
                 // 'desired_program' => $studentInformation->desired_program,
-                // 'type_id' => $studentInformation->type_id,
-                'intProgramID' => $studentInformation->program_id,
+                // 'type_id' => $studentInformation->type_id,                
             ]);
 
             $data['response'] = $response->body();
