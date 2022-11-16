@@ -35,7 +35,7 @@ class StudentInformationResource extends JsonResource
             'student_type' => $this->studentType ? $this->studentType->type : '',
             'desired_program' => $this->desiredProgram ? $this->desiredProgram->title : '',
             'type_id' => $this->studentType ? $this->studentType->id : '',
-            'program_id' => $this->desiredProgram ? $this->desiredProgram->id : '',
+            'program' => $this->program,
             'upload_types' => $uploadTypes,
             'interview_remarks' => $this->interview_remarks,
             'acceptance_letter' => $this->acceptance_letter,
