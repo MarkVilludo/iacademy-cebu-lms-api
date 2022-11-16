@@ -367,8 +367,12 @@ class AdmissionProcessController extends Controller
                 new ForInterviewMail($studentInformation)
             );
         } else if (request('status') == 'For Reservation') {
+            $response = Http::get('http://172.16.80.20/cebu-iac-lms/unity/get_active_sem');              
+
+            $data['response'] = $response->body();
+
             Mail::to($studentInformation->email)->send(
-                new ForReservationMail($studentInformation)
+                new ForReservationMail($studentInformation, $data['response']['active_sem'])
             );
         }else if (request('status') == 'For Enrollment') {            
 
@@ -394,7 +398,7 @@ class AdmissionProcessController extends Controller
         
 
             Mail::to($studentInformation->email)->send(
-                new ForEnrollmentMail($studentInformation, $data['response']['active_sem'])
+                new ForEnrollmentMail($studentInformation)
             );
         }
 
