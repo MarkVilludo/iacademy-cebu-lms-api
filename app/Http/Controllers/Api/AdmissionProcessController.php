@@ -386,6 +386,8 @@ class AdmissionProcessController extends Controller
                 'strAddress' => $studentInformation->address,
                 'intProgramID' => $studentInformation->type_id,
                 'slug' => $studentInformation->slug,
+                'strMobileNumber' => $studentInformation->mobile_number,
+                'strTelNumber' => $studentInformation->tel_number,
                 // 'status' => $studentInformation->status,
                 // 'school' => $studentInformation->school,
                 // 'mobile_number' => $studentInformation->mobile_number,
