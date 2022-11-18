@@ -70,7 +70,7 @@
             <a href="admissionscebu@iacademy.edu.ph">admissionscebu@iacademy.edu.ph</a>
             <br>
         </div>
-        <img style="display:block;margin:0 auto; width:800px" width="800" src="https://i.ibb.co/M9SntyB/footer.png"
+        <img style="display:block;margin:0 auto; width:800px" width="800" src="https://i.ibb.co/bWzLGKh/cebu-footer.png"
             alt="">
     </div>
     </div>

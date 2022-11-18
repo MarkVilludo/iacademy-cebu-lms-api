@@ -26,7 +26,7 @@
 
                     See you soon, Game Changer!
                 </div>
-                <img style="display:block;margin:0 auto; width:800px" width="800" src="https://i.ibb.co/M9SntyB/footer.png" alt="">
+                <img style="display:block;margin:0 auto; width:800px" width="800" src="https://i.ibb.co/bWzLGKh/cebu-footer.png" alt="">
             </div>
         </div>
     </body>
