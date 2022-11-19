@@ -110,6 +110,17 @@ class AdmissionProcessController extends Controller
                 return response()->json($data);
             }
 
+            $emailExists = $this->studentInformation::where('email', request('email'))
+                                                       ->first();
+
+            if($emailExists){
+
+                $data['success'] = false;
+                $data['response'] = "The email address ".request('email')." is already in use";
+                $data['message'] = str_replace('.', '', implode(', ', $message));
+                return response()->json($data);
+
+            }                                                       
             $studentInformation = new $this->studentInformation();
             $studentInformation->first_name = request('first_name');
             $studentInformation->last_name = request('last_name');
