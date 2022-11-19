@@ -117,7 +117,7 @@ class AdmissionProcessController extends Controller
 
                 $data['success'] = false;
                 $data['response'] = "The email address ".request('email')." is already in use";
-                $data['message'] = str_replace('.', '', implode(', ', $message));
+                $data['message'] = "The email address ".request('email')." is already in use";
                 return response()->json($data);
 
             }                                                       
