@@ -15,6 +15,7 @@ class AddColumnOrderStudentInformationRequirementsTable extends Migration
     {
         Schema::table('payment_details', function (Blueprint $table) {
             $table->integer('sy_reference')->nullable()->after('request_id');
+            $table->string('or_number')->nullable();
         });
     }
 
