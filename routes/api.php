@@ -51,6 +51,11 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('/', [InterviewScheduleController::class, 'store']);
     });
     
+    Route::group(['prefix' => 'finance'], function() {        
+        Route::get('transactions/{slug}/{sem}', [FinanceProcessController::class, 'transactions']);
+       
+    });
+
     Route::group(['prefix' => 'payments'], function() {
         Route::post('/', [PaymentGatewayController::class, 'pay']);
         Route::get('modes', [ModePaymentController::class, 'index']);
