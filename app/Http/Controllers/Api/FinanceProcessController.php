@@ -66,7 +66,6 @@ class FinanceProcessController extends Controller
 
     public function transactions($slug, $sem){
                 
-
         $student = $this->studentInformation::where('slug', $slug)->first();
         $data['data'] = @PaymentDetailResource::collection($this->paymentDetail
                                         ->where('student_information_id', $student->id)
