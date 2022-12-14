@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\{AdmissionProcessController, ModePaymentController};
 use App\Http\Controllers\Api\{PaymentGatewayController, PaynamicsWebhookController};
-use App\Http\Controllers\Api\{InterviewScheduleController};
+use App\Http\Controllers\Api\{InterviewScheduleController, FinanceProcessController};
 
 
 /*
