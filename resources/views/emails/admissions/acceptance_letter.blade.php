@@ -48,11 +48,12 @@
                 Chief Operating Officer<br />
                 iACADEMY                
                 <br /><br />
-                The next step is to pay for your reservation, click on the link below:<br /><br />
+                The next step is to pay for your reservation, click on the button below:<br /><br />
                 <a href="http://103.225.39.200/cebu-iac-lms/site/admissions_student_payment_reservation/{{$information->slug}}"
                     style="text-align:center">
                     <button type="button"
-                        style="text-decoration:none;display: inline-block;font-weight: 400;color: #fff;text-align: center;vertical-align: middle;border: 1px solid transparent;padding: 8px 12px;font-size: 16px;line-height: 1.6;border-radius: 0.25rem;background-color: #1c54a5;border: 1px solid #1c54a5;">Pay Reservation Fee</button>
+                        style="text-decoration:none;display: inline-block;font-weight: 400;color: #fff;text-align: center;vertical-align: middle;border: 1px solid transparent;padding: 8px 12px;font-size: 16px;line-height: 1.6;border-radius: 0.25rem;background-color: #1c54a5;border: 1px solid #1c54a5;">
+                        Reserve your slot TODAY</button>
                 </a>                
                 <br /><br /><br />
             </div>
