@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
 use App\Http\Resources\Admissions\{StudentInformationResource, AdmissionFileResource};
 use App\Mail\Admissions\{SendAcceptanceLetterMail, SubmitRequirementsMail, ForEnrollmentMail};
-use App\Mail\Admissions\{ForInterviewMail, ForReservationMail};
+use App\Mail\Admissions\{ForInterviewMail, ForReservationMail, ForEnrollmentRegistrarMail};
 
 use DB, Mail;
 
@@ -420,6 +420,11 @@ class AdmissionProcessController extends Controller
 
             Mail::to($studentInformation->email)->send(
                 new ForEnrollmentMail($studentInformation)
+            );
+
+            //Registrar Email here
+            Mail::to('josephedmundcastillo@gmail.com')->send(
+                new ForEnrollmentRegistrarMail($studentInformation)
             );
         }
 
