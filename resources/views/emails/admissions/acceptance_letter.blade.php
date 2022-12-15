@@ -48,7 +48,7 @@
                 Chief Operating Officer<br />
                 iACADEMY                
                 <br /><br />
-                The next step is to pay for your reservation, click on the link below:
+                The next step is to pay for your reservation, click on the link below:<br /><br />
                 <a href="http://103.225.39.200/cebu-iac-lms/site/admissions_student_payment_reservation/{{$information->slug}}"
                     style="text-align:center">
                     <button type="button"
