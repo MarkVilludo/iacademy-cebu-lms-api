@@ -75,4 +75,16 @@ class FinanceProcessController extends Controller
         $data['message'] = 'transactions for current term';
         return response()->json($data, 200);
     }
+
+    public function reservation_payment($slug){
+                
+        $student = $this->studentInformation::where('slug', $slug)->first();
+        $data['data'] = new PaymentDetailResource($this->paymentDetail
+                                        ->where('student_information_id', $student->id)
+                                        ->where('description', 'Reservation Payment')                                        
+                                        ->first());
+        $data['success'] = true;
+        $data['message'] = 'transactions for current term';
+        return response()->json($data, 200);
+    }
 }
