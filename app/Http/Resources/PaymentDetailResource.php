@@ -29,7 +29,7 @@ class PaymentDetailResource extends JsonResource
             'payment_action_info' => $this->payment_action_info,
             'status' => $this->status,
             'sy_reference' => $this->sy_reference,
-            'updated_at' => $this->updated_at,
+            'updated_at' => date("M j, Y h:ia",strtotime($this->updated_at)),
             //'is_nonbank' => $this->pmethod == 'nonbank_otc' ? true : false
         ];
     }
