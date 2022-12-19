@@ -14,7 +14,7 @@ class AddColumnSyidToAdmissionStdentInformationTable extends Migration
     public function up()
     {
         Schema::table('admission_student_information', function (Blueprint $table) {
-            $table->integer('syid')->nullable()->after('request_id');            
+            $table->integer('syid')->nullable()->after('email');            
         });
     }
 
