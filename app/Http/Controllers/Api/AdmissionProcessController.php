@@ -138,6 +138,7 @@ class AdmissionProcessController extends Controller
             $studentInformation->type_id = request('type_id');
             $studentInformation->program = request('program');
             $studentInformation->address = request('address');
+            $studentInformation->syid = request('syid');
             $studentInformation->status = 'New';
             $studentInformation->date_of_birth = request('date_of_birth');
             $studentInformation->slug = \Str::uuid();
