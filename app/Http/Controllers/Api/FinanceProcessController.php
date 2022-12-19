@@ -83,6 +83,8 @@ class FinanceProcessController extends Controller
                                         ->where('student_information_id', $student->id)
                                         ->where('description', 'Reservation Payment')                                        
                                         ->first());
+
+        $data['student_sy'] = $student->syid;
         $data['success'] = true;
         $data['message'] = 'transactions for current term';
         return response()->json($data, 200);
