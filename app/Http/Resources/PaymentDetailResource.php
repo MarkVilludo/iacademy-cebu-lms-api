@@ -17,6 +17,7 @@ class PaymentDetailResource extends JsonResource
         return [
             'id' => $this->id,
             'description' => $this->description,
+            'or_number' => $this->or_number,
             'mode' => $this->mode,
             'subtotal_order' => $this->subtotal_order,
             'convenience_fee' => $this->convenience_fee,
@@ -24,9 +25,11 @@ class PaymentDetailResource extends JsonResource
             'charges' => $this->charges,
             'request_id' => $this->request_id,
             'response_id' => $this->response_id,
+            'response_message' => $this->response_message,
             'payment_action_info' => $this->payment_action_info,
             'status' => $this->status,
             'sy_reference' => $this->sy_reference,
+            'updated_at' => $this->updated_at,
             //'is_nonbank' => $this->pmethod == 'nonbank_otc' ? true : false
         ];
     }
