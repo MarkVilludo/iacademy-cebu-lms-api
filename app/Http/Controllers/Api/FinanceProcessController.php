@@ -92,5 +92,7 @@ class FinanceProcessController extends Controller
 
     public function manual_payment(Request $request){
         
+        $referer = request()->headers->get('referer');
+        echo $referer;
     }
 }
