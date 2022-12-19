@@ -97,5 +97,6 @@ class FinanceProcessController extends Controller
         
         $data['success'] = true;
         $data['message'] = 'Referer: '.$referer;
+        return response()->json($data, 200);
     }
 }
