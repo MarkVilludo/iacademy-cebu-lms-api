@@ -89,4 +89,8 @@ class FinanceProcessController extends Controller
         $data['message'] = 'transactions for current term';
         return response()->json($data, 200);
     }
+
+    public function manual_payment(Request $request){
+        
+    }
 }
