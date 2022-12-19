@@ -93,10 +93,16 @@ class FinanceProcessController extends Controller
     public function manual_payment(Request $request){
         
         $referer = request()->headers->get('referer');
+        if($referer == "http://103.225.39.200/"){
+            $data['success'] = true;
+            $data['message'] = "Allowed";
+        }
+        else{
+            $data['success'] = false;
+            $data['message'] = "request denied";
+        }
         
         
-        $data['success'] = true;
-        $data['message'] = 'Referer: '.$referer;
         return response()->json($data, 200);
     }
 }
