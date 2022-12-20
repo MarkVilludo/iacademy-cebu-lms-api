@@ -53,6 +53,7 @@ Route::group(['prefix' => 'v1'], function() {
     
     Route::group(['prefix' => 'finance'], function() {        
         Route::get('transactions/{slug}/{sem}', [FinanceProcessController::class, 'transactions']);
+        Route::get('transactions_other/{slug}/{sem}', [FinanceProcessController::class, 'transactions_other']);        
         Route::get('reservation/{slug}', [FinanceProcessController::class, 'reservation_payment']);
         Route::post('manual_payment', [FinanceProcessController::class, 'manual_payment']);                       
     });
