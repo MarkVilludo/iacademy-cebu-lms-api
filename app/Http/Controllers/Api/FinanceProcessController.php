@@ -83,7 +83,7 @@ class FinanceProcessController extends Controller
         return response()->json($data, 200);
     }
 
-    public function transactions_other($slug, $sem){
+    public function transactionsOther($slug, $sem){
                 
         $student = $this->studentInformation::where('slug', $slug)->first();
         $data['data'] = @PaymentDetailResource::collection($this->paymentDetail
@@ -96,7 +96,7 @@ class FinanceProcessController extends Controller
         return response()->json($data, 200);
     }
 
-    public function reservation_payment($slug){
+    public function reservationPayment($slug){
                 
         $student = $this->studentInformation::where('slug', $slug)->first();
         $data['data'] = new PaymentDetailResource($this->paymentDetail
@@ -108,9 +108,10 @@ class FinanceProcessController extends Controller
         $data['success'] = true;
         $data['message'] = 'transactions for current term';
         return response()->json($data, 200);
+    
     }
 
-    public function manual_payment(Request $request){
+    public function manualPayment(Request $request){
         
         $referer = request()->headers->get('referer');
         if($referer == "http://103.225.39.200/"){
@@ -143,6 +144,54 @@ class FinanceProcessController extends Controller
 
             $newPaymentDetails->ip_address = @$request->ip();
             $newPaymentDetails->save();
+            
+            $data['success'] = true;
+            $data['message'] = "Successfully Added Payment";
+
+        }
+        else{
+            $data['success'] = false;
+            $data['message'] = "request denied";
+        }
+        
+        
+        return response()->json($data, 200);
+    }
+
+    public function setPaid(Request $request){
+        
+        $referer = request()->headers->get('referer');
+        if($referer == "http://103.225.39.200/"){                        
+            
+            $PaymentDetails = $this->paymentDetail::find($request->id);
+            if($PaymentDetails->mode_of_payment_id == $request->mode){
+                $PaymentDetails->status = "Paid";
+                $PaymentDetails->ip_address = @$request->ip();
+                $PaymentDetails->save();
+            }
+            
+            $data['success'] = true;
+            $data['message'] = "Successfully Added Payment";
+
+        }
+        else{
+            $data['success'] = false;
+            $data['message'] = "request denied";
+        }
+        
+        
+        return response()->json($data, 200);
+    }
+
+    public function deletePayment(Request $request){
+        
+        $referer = request()->headers->get('referer');
+        if($referer == "http://103.225.39.200/"){                        
+            
+            $PaymentDetails = $this->paymentDetail::find($request->id);
+            if($PaymentDetails->mode_of_payment_id == $request->mode){
+                $PaymentDetails->delete();
+            }
             
             $data['success'] = true;
             $data['message'] = "Successfully Added Payment";
