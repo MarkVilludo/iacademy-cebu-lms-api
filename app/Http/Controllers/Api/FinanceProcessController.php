@@ -72,6 +72,12 @@ class FinanceProcessController extends Controller
                                         ->where('description','LIKE','Tuition%')
                                         ->where('sy_reference', $sem)                                        
                                         ->get());
+
+        $data['other'] = @PaymentDetailResource::collection($this->paymentDetail
+                                        ->where('student_information_id', $student->id)
+                                        ->where('description','NOT LIKE','Tuition%')
+                                        ->where('sy_reference', $sem)                                        
+                                        ->get());
         $data['success'] = true;
         $data['message'] = 'transactions for current term';
         return response()->json($data, 200);
