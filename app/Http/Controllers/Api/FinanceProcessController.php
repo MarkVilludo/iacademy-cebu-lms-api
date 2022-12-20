@@ -124,7 +124,7 @@ class FinanceProcessController extends Controller
             $newPaymentDetails->email_address = $request->email_address;
             $newPaymentDetails->remarks = $request->remarks;
             $newPaymentDetails->mode_of_payment_id = $request->mode_of_payment_id;            
-            $newPaymentDetails->convenience_fee = $request->charge;
+            $newPaymentDetails->convenience_fee = 0;
             $newPaymentDetails->subtotal_order = $request->subtotal_order;
             $newPaymentDetails->total_amount_due = $request->total_amount_due;
             $newPaymentDetails->sy_reference = $request->sy_reference;
