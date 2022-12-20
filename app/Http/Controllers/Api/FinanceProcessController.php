@@ -69,6 +69,20 @@ class FinanceProcessController extends Controller
         $student = $this->studentInformation::where('slug', $slug)->first();
         $data['data'] = @PaymentDetailResource::collection($this->paymentDetail
                                         ->where('student_information_id', $student->id)
+                                        ->where('description','LIKE','Tution%')
+                                        ->where('sy_reference', $sem)                                        
+                                        ->get());
+        $data['success'] = true;
+        $data['message'] = 'transactions for current term';
+        return response()->json($data, 200);
+    }
+
+    public function transactions_other($slug, $sem){
+                
+        $student = $this->studentInformation::where('slug', $slug)->first();
+        $data['data'] = @PaymentDetailResource::collection($this->paymentDetail
+                                        ->where('student_information_id', $student->id)
+                                        ->where('description','NOT LIKE','Tution%')
                                         ->where('sy_reference', $sem)                                        
                                         ->get());
         $data['success'] = true;
