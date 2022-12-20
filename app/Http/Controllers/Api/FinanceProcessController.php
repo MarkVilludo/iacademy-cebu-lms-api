@@ -20,7 +20,7 @@ class FinanceProcessController extends Controller
     //
     public function __construct(
         PaymentDetail $paymentDetail,
-        PaymentMode $paymentmode,
+        PaymentMode $paymentMode,
         AdmissionStudentInformation $studentInformation) {
 
         $this->paymentDetail = $paymentDetail;
