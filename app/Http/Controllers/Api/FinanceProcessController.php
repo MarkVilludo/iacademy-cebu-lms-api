@@ -95,7 +95,7 @@ class FinanceProcessController extends Controller
         $referer = request()->headers->get('referer');
         if($referer == "http://103.225.39.200/"){
             $data['success'] = true;
-            $data['message'] = "Allowed";
+            $data['message'] = "Allowed: ".$request->first_name." ".$request->last_name.", ".$request->middle_name;
         }
         else{
             $data['success'] = false;
