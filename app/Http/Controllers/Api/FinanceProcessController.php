@@ -123,7 +123,7 @@ class FinanceProcessController extends Controller
             $newPaymentDetails->slug = \Str::uuid();
             $newPaymentDetails->description = $request->description;
             $newPaymentDetails->or_number = $request->or_number;
-            $newPaymentDetails->status = "Paid";
+            $newPaymentDetails->status = $request->status;
             $newPaymentDetails->student_information_id = $student->id;
             $newPaymentDetails->student_number = '';
             $newPaymentDetails->first_name = $request->first_name;
