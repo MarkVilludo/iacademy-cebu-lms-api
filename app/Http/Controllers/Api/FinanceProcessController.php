@@ -160,6 +160,35 @@ class FinanceProcessController extends Controller
         return response()->json($data, 200);
     }
 
+    public function updateOrNumber(Request $request){
+        
+        $referer = request()->headers->get('referer');
+        if($referer == "http://103.225.39.200/"){                        
+            
+            $PaymentDetails = $this->paymentDetail::find($request->id);        
+            if(!$PaymentDetails->or_number){
+                $PaymentDetails->or_number = $request->or_number;
+                $PaymentDetails->ip_address = @$request->ip();
+                $PaymentDetails->save();
+                $data['success'] = true;
+                $data['message'] = "Successfully Added Payment";
+            }
+            else{
+                $data['success'] = false;
+                $data['message'] = "this payment already has an OR number please contact MIS personel to update it manually";
+            }
+            
+
+        }
+        else{
+            $data['success'] = false;
+            $data['message'] = "request denied";
+        }
+        
+        
+        return response()->json($data, 200);
+    }
+
     public function setPaid(Request $request){
         
         $referer = request()->headers->get('referer');

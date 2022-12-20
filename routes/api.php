@@ -57,7 +57,9 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('reservation/{slug}', [FinanceProcessController::class, 'reservationPayment']);
         Route::post('manual_payment', [FinanceProcessController::class, 'manualPayment']);
         Route::post('delete_payment', [FinanceProcessController::class, 'deletePayment']);
-        Route::post('set_paid', [FinanceProcessController::class, 'setPaid']);                       
+        Route::post('set_paid', [FinanceProcessController::class, 'setPaid']);
+        Route::post('update_or', [FinanceProcessController::class, 'updateOrNumber']);        
+                       
         
     });
 
