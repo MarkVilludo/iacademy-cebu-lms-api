@@ -7,6 +7,11 @@ use App\Models\{AdmissionStudentInformation, AdmissionInterviewSchedule};
 use App\Http\Resources\Admissions\InterviewScheduleResource;
 use Illuminate\Http\Request;
 
+use App\Mail\SubmitInformationMail;
+use App\Mail\Admissions\InterviewNotificationMail;
+
+use DB, Mail;
+
 class InterviewScheduleController extends Controller
 {
     //
@@ -45,6 +50,12 @@ class InterviewScheduleController extends Controller
                 $newInterviewSchedule->time_from  = request('time_from');
                 $newInterviewSchedule->time_to  = request('time_to');
                 $newInterviewSchedule->save();
+
+                //Email to AO
+                //Registrar Email here
+                Mail::to('josephedmundcastillo@gmail.com')->send(
+                    new InterviewNotificationMail($checkStudentInfo)
+                );
 
                 $data['message'] = 'Succcessfully saved interview schedule.';
                 $data['success'] = true;
