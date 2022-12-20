@@ -120,35 +120,41 @@ class FinanceProcessController extends Controller
 
             $requestId =  'mp' . substr(uniqid(), 0, 18);
             $student = $this->studentInformation::where('slug', $request->slug)->first();
-            
-            $newPaymentDetails = new $this->paymentDetail();
-            $newPaymentDetails->request_id = $requestId;
-            $newPaymentDetails->slug = \Str::uuid();
-            $newPaymentDetails->description = $request->description;
-            $newPaymentDetails->or_number = $request->or_number;
-            $newPaymentDetails->status = $request->status;
-            $newPaymentDetails->student_information_id = $student->id;
-            $newPaymentDetails->student_number = '';
-            $newPaymentDetails->first_name = $request->first_name;
-            $newPaymentDetails->middle_name = $request->middle_name;
-            $newPaymentDetails->last_name = $request->last_name;
-            $newPaymentDetails->email_address = $request->email_address;
-            $newPaymentDetails->remarks = $request->remarks;
-            $newPaymentDetails->mode_of_payment_id = $request->mode_of_payment_id;            
-            $newPaymentDetails->convenience_fee = 0;
-            $newPaymentDetails->subtotal_order = $request->subtotal_order;
-            $newPaymentDetails->total_amount_due = $request->total_amount_due;
-            $newPaymentDetails->sy_reference = $request->sy_reference;
-            $newPaymentDetails->charges = 0;
-            $newPaymentDetails->contact_number = $request->contact_number;
-            $newPaymentDetails->name_of_school = @$request->name_of_school;
-            $newPaymentDetails->course = @$request->course;
+            $checkOR = $this->paymentDetail::where('or_number',$request->or_number)->first();
+            if(!$checkOR){
+                $newPaymentDetails = new $this->paymentDetail();
+                $newPaymentDetails->request_id = $requestId;
+                $newPaymentDetails->slug = \Str::uuid();
+                $newPaymentDetails->description = $request->description;
+                $newPaymentDetails->or_number = $request->or_number;
+                $newPaymentDetails->status = $request->status;
+                $newPaymentDetails->student_information_id = $student->id;
+                $newPaymentDetails->student_number = '';
+                $newPaymentDetails->first_name = $request->first_name;
+                $newPaymentDetails->middle_name = $request->middle_name;
+                $newPaymentDetails->last_name = $request->last_name;
+                $newPaymentDetails->email_address = $request->email_address;
+                $newPaymentDetails->remarks = $request->remarks;
+                $newPaymentDetails->mode_of_payment_id = $request->mode_of_payment_id;            
+                $newPaymentDetails->convenience_fee = 0;
+                $newPaymentDetails->subtotal_order = $request->subtotal_order;
+                $newPaymentDetails->total_amount_due = $request->total_amount_due;
+                $newPaymentDetails->sy_reference = $request->sy_reference;
+                $newPaymentDetails->charges = 0;
+                $newPaymentDetails->contact_number = $request->contact_number;
+                $newPaymentDetails->name_of_school = @$request->name_of_school;
+                $newPaymentDetails->course = @$request->course;
 
-            $newPaymentDetails->ip_address = @$request->ip();
-            $newPaymentDetails->save();
-            
-            $data['success'] = true;
-            $data['message'] = "Successfully Added Payment";
+                $newPaymentDetails->ip_address = @$request->ip();
+                $newPaymentDetails->save();
+
+                $data['success'] = true;
+                $data['message'] = "Successfully Added Payment";
+            }
+            else{
+                $data['success'] = false;
+                $data['message'] = "OR Number Already Exists";    
+            }
 
         }
         else{
@@ -166,16 +172,17 @@ class FinanceProcessController extends Controller
         if($referer == "http://103.225.39.200/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);        
-            if(!$PaymentDetails->or_number){
+            $checkOR = $this->paymentDetail::where('or_number',$request->or_number)->first();
+            if(!$checkOR){
                 $PaymentDetails->or_number = $request->or_number;
                 $PaymentDetails->ip_address = @$request->ip();
                 $PaymentDetails->save();
                 $data['success'] = true;
-                $data['message'] = "Successfully Added Payment";
+                $data['message'] = "Successfully Updated OR";
             }
             else{
                 $data['success'] = false;
-                $data['message'] = "this payment already has an OR number please contact MIS personel to update it manually";
+                $data['message'] = "OR Number Already Exists";
             }
             
 
@@ -201,7 +208,7 @@ class FinanceProcessController extends Controller
                 $PaymentDetails->ip_address = @$request->ip();
                 $PaymentDetails->save();
                 $data['success'] = true;
-                $data['message'] = "Successfully Added Payment";
+                $data['message'] = "Successfully Updated Payment";
             }
             else{
                 $data['success'] = false;
@@ -229,7 +236,7 @@ class FinanceProcessController extends Controller
             if($PaymentMode->name == "MANUAL"){
                 $PaymentDetails->delete();
                 $data['success'] = true;
-                $data['message'] = "Successfully Added Payment";
+                $data['message'] = "Successfully Deleted Payment";
             }
             else{
                 $data['success'] = false;
