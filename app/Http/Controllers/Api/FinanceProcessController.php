@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use App\Models\PaymentDetail;
+use App\Models\{PaymentDetail, PaymentMode};
 use App\Models\AdmissionStudentInformation;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
@@ -20,9 +20,11 @@ class FinanceProcessController extends Controller
     //
     public function __construct(
         PaymentDetail $paymentDetail,
+        PaymentMode $paymentmode,
         AdmissionStudentInformation $studentInformation) {
 
         $this->paymentDetail = $paymentDetail;
+        $this->paymentMode = $paymentMode;
         $this->studentInformation = $studentInformation;
     }
 
@@ -164,14 +166,19 @@ class FinanceProcessController extends Controller
         if($referer == "http://103.225.39.200/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);
-            if($PaymentDetails->mode_of_payment_id == $request->mode){
+            $PaymentMode = $this->PaymentMode::find($PaymentDetails->mode_of_payment_id);
+            if($PaymentMode->name == "MANUAL"){
                 $PaymentDetails->status = "Paid";
                 $PaymentDetails->ip_address = @$request->ip();
                 $PaymentDetails->save();
+                $data['success'] = true;
+                $data['message'] = "Successfully Added Payment";
+            }
+            else{
+                $data['success'] = false;
+                $data['message'] = "request denied";
             }
             
-            $data['success'] = true;
-            $data['message'] = "Successfully Added Payment";
 
         }
         else{
@@ -189,12 +196,17 @@ class FinanceProcessController extends Controller
         if($referer == "http://103.225.39.200/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);
-            if($PaymentDetails->mode_of_payment_id == $request->mode){
+            $PaymentMode = $this->PaymentMode::find($PaymentDetails->mode_of_payment_id);
+            if($PaymentMode->name == "MANUAL"){
                 $PaymentDetails->delete();
+                $data['success'] = true;
+                $data['message'] = "Successfully Added Payment";
+            }
+            else{
+                $data['success'] = false;
+                $data['message'] = "request denied";
             }
             
-            $data['success'] = true;
-            $data['message'] = "Successfully Added Payment";
 
         }
         else{
