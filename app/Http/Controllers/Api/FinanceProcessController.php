@@ -166,7 +166,7 @@ class FinanceProcessController extends Controller
         if($referer == "http://103.225.39.200/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);
-            $PaymentMode = $this->PaymentMode::find($PaymentDetails->mode_of_payment_id);
+            $PaymentMode = $this->paymentMode::find($PaymentDetails->mode_of_payment_id);
             if($PaymentMode->name == "MANUAL"){
                 $PaymentDetails->status = "Paid";
                 $PaymentDetails->ip_address = @$request->ip();
@@ -196,7 +196,7 @@ class FinanceProcessController extends Controller
         if($referer == "http://103.225.39.200/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);
-            $PaymentMode = $this->PaymentMode::find($PaymentDetails->mode_of_payment_id);
+            $PaymentMode = $this->paymentMode::find($PaymentDetails->mode_of_payment_id);
             if($PaymentMode->name == "MANUAL"){
                 $PaymentDetails->delete();
                 $data['success'] = true;
