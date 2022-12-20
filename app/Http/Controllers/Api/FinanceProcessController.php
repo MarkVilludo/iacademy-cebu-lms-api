@@ -108,8 +108,37 @@ class FinanceProcessController extends Controller
         
         $referer = request()->headers->get('referer');
         if($referer == "http://103.225.39.200/"){
+
+            $requestId =  'mp' . substr(uniqid(), 0, 18);
+            $student = $this->studentInformation::where('slug', $request->slug)->first();
+            
+            $newPaymentDetails = new $this->paymentDetail();
+            $newPaymentDetails->request_id = $requestId;
+            $newPaymentDetails->slug = \Str::uuid();
+            $newPaymentDetails->description = $request->description;
+            $newPaymentDetails->student_information_id = $student->id;
+            $newPaymentDetails->student_number = '';
+            $newPaymentDetails->first_name = $request->first_name;
+            $newPaymentDetails->middle_name = $request->middle_name;
+            $newPaymentDetails->last_name = $request->last_name;
+            $newPaymentDetails->email_address = $request->email;
+            $newPaymentDetails->remarks = $request->remarks;
+            $newPaymentDetails->mode_of_payment_id = $request->mode_of_payment_id;            
+            $newPaymentDetails->convenience_fee = $request->charge;
+            $newPaymentDetails->subtotal_order = $request->subtotal_order;
+            $newPaymentDetails->total_amount_due = $request->total_amount_due;
+            $newPaymentDetails->sy_reference = $request->sy_reference;
+            $newPaymentDetails->charges = 0;
+            $newPaymentDetails->contact_number = $request->contact_number;
+            $newPaymentDetails->name_of_school = @$request->name_of_school;
+            $newPaymentDetails->course = @$request->course;
+
+            $newPaymentDetails->ip_address = @$request->ip();
+            $newPaymentDetails->save();
+            
             $data['success'] = true;
-            $data['message'] = "Allowed: ".$request->first_name." ".$request->last_name.", ".$request->middle_name;
+            $data['message'] = "Successfully Added Payment";
+
         }
         else{
             $data['success'] = false;
