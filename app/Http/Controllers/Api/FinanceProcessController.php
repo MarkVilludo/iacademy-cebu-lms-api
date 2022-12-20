@@ -106,6 +106,11 @@ class FinanceProcessController extends Controller
                                         ->where('description', 'Reservation Payment')                                        
                                         ->first());
 
+        $data['application'] = new PaymentDetailResource($this->paymentDetail
+                                        ->where('student_information_id', $student->id)
+                                        ->where('description', 'Application Payment')                                        
+                                        ->first());
+
         $data['student_sy'] = $student->syid;
         $data['success'] = true;
         $data['message'] = 'transactions for current term';
