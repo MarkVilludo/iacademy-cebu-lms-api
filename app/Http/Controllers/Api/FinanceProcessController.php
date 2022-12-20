@@ -68,7 +68,8 @@ class FinanceProcessController extends Controller
                 
         $student = $this->studentInformation::where('slug', $slug)->first();
         $data['data'] = @PaymentDetailResource::collection($this->paymentDetail
-                                        ->where('student_information_id', $student->id)                                        
+                                        ->where('student_information_id', $student->id)
+                                        ->where('description','LIKE','Tuition%')
                                         ->where('sy_reference', $sem)                                        
                                         ->get());
         $data['success'] = true;
@@ -81,7 +82,7 @@ class FinanceProcessController extends Controller
         $student = $this->studentInformation::where('slug', $slug)->first();
         $data['data'] = @PaymentDetailResource::collection($this->paymentDetail
                                         ->where('student_information_id', $student->id)
-                                        ->where('description','NOT LIKE','Tution%')
+                                        ->where('description','NOT LIKE','Tuition%')
                                         ->where('sy_reference', $sem)                                        
                                         ->get());
         $data['success'] = true;
