@@ -121,7 +121,7 @@ class FinanceProcessController extends Controller
             $requestId =  'mp' . substr(uniqid(), 0, 18);
             $student = $this->studentInformation::where('slug', $request->slug)->first();
             $checkOR = $this->paymentDetail::where('or_number',$request->or_number)->first();
-            if(!$checkOR){
+            if(!$checkOR || !$request->or_number){
                 $newPaymentDetails = new $this->paymentDetail();
                 $newPaymentDetails->request_id = $requestId;
                 $newPaymentDetails->slug = \Str::uuid();
@@ -173,7 +173,7 @@ class FinanceProcessController extends Controller
             
             $PaymentDetails = $this->paymentDetail::find($request->id);        
             $checkOR = $this->paymentDetail::where('or_number',$request->or_number)->first();
-            if(!$checkOR){
+            if(!$checkOR || !$request->or_number){
                 $PaymentDetails->or_number = $request->or_number;
                 $PaymentDetails->ip_address = @$request->ip();
                 $PaymentDetails->save();
