@@ -17,7 +17,7 @@
                 {!! $information->message !!}
                 <br><br>
                 Click on the button below to pay tuition online: <br /> <br />
-                <a href="http://103.225.39.200/cebu-iac-lms/site/student_tuition_payment/{{$information->student->slug}}"
+                <a href="{{ $information->payment_link }}"
                     style="text-align:center">
                     <button type="button"
                         style="text-decoration:none;display: inline-block;font-weight: 400;color: #fff;text-align: center;vertical-align: middle;border: 1px solid transparent;padding: 8px 12px;font-size: 16px;line-height: 1.6;border-radius: 0.25rem;background-color: #1c54a5;border: 1px solid #1c54a5;">
