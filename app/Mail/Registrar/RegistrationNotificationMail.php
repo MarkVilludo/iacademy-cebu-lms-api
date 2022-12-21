@@ -32,7 +32,7 @@ class RegistrationNotificationMail extends Mailable
     {
         return $this->view('emails.registrar.registration_notification')
                     ->from('markanthony.villudo@gmail.com', 'iACADEMY Cebu Portal')
-                    ->subject('iACADEMY Registrar: Enrollment Notification - ' . $this->information->first_name . ' ' . $this->information->last_name)
+                    ->subject('iACADEMY Registrar: Enrollment Notification - ' . $this->information->student->first_name . ' ' . $this->information->student->last_name)
                     ->replyTo('admissionscebu@iacademy.edu.ph', 'iACADEMY Cebu Portal');
     }
 }
