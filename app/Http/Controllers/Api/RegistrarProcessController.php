@@ -36,35 +36,7 @@ class RegistrarProcessController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        // $searchField = $request->search_field;
-        // $searchData = $request->search_data;
-        // $orderBy = $request->order_by;
-        // $sortField = $request->sort_field;
-        // $filter = $request->filter;
-
-        // $paginateCount = 10;
-        // if ($request->count_content) {
-        //     $paginateCount = $request->count_content;
-        // }
-        // if($filter != "none")
-        //     $applications = $this->studentInformation->filterByField($searchField, $searchData)
-        //                             ->where('status',$filter)
-        //                             ->orderByField($sortField, $orderBy)
-        //                             ->paginate($paginateCount);
-        // else
-        //     $applications = $this->studentInformation->filterByField($searchField, $searchData)
-        //                             ->orderByField($sortField, $orderBy)
-        //                             ->paginate($paginateCount);
-
-        // if ($applications) {
-        //     return StudentInformationResource::collection($applications);
-        //     $data['message'] = 'Shows student application available.';
-        // } else {
-        //     $data['message'] = 'No student application available';
-        // }
-
-        // return response()->json($data, 200);
+        
     }
 
 
