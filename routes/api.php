@@ -61,7 +61,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('update_or', [FinanceProcessController::class, 'updateOrNumber']);                                       
     });
     Route::group(['prefix' => 'registrar'], function() {        
-        Route::get('send_notif_registered/{slug}', [RegistrarProcessController::class, 'sendNotifRegistered']);
+        Route::post('send_notif_registered/{slug}', [RegistrarProcessController::class, 'sendNotifRegistered']);
         
     });    
 
