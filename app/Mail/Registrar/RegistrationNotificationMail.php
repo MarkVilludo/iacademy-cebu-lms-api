@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\Admissions;
+namespace App\Mail\Registrar;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
