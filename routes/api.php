@@ -60,6 +60,10 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('set_paid', [FinanceProcessController::class, 'setPaid']);
         Route::post('update_or', [FinanceProcessController::class, 'updateOrNumber']);                                       
     });
+    Route::group(['prefix' => 'registrar'], function() {        
+        Route::get('send_notif_registered/{slug}', [RegistrarProcessController::class, 'sendNotifRegistered']);
+        
+    });    
 
     Route::group(['prefix' => 'payments'], function() {
         Route::post('/', [PaymentGatewayController::class, 'pay']);
