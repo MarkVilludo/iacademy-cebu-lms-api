@@ -153,6 +153,15 @@ class FinanceProcessController extends Controller
                 $newPaymentDetails->ip_address = @$request->ip();
                 $newPaymentDetails->save();
 
+                if($request->description == "Reservation Payment" && $request->status == "Paid")
+                    $student->status = "Reserved";
+                    $student->update();
+                
+                if($request->description == "Application Payment" && $request->status == "Paid"){
+                    $student->status = "Waiting For Interview";
+                    $student->update();
+                }
+
                 $data['success'] = true;
                 $data['message'] = "Successfully Added Payment";
             }
