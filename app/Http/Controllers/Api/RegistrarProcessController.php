@@ -40,7 +40,7 @@ class RegistrarProcessController extends Controller
     }
 
 
-    public function sendNotifRegistered($slug){
+    public function sendNotifRegistered(Request $request, $slug){
                 
         $studentInformation = $this->studentInformation::where('slug', $slug)->first();
         
