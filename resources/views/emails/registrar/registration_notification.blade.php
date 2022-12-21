@@ -13,8 +13,7 @@
                 alt="">
             <div class="" style="padding:20px;font-family:verdana;font-size:14px;">
                 Greetings {!! $information->first_name .' '. $information->last_name !!},
-                <br><br>
-                {{ $message }}
+                <br><br>                
                 <br><br>
                 Click on the payment link below to pay tuition online: <br />
                 <a href="http://103.225.39.200/cebu-iac-lms/site/student_tuition_payment/{{$information->slug}}"

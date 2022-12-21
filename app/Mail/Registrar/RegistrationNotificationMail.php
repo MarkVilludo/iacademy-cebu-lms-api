@@ -17,12 +17,10 @@ class RegistrationNotificationMail extends Mailable
      *
      * @return void
      */
-    public $information;
-    public $message;
-    public function __construct($information, $message)
+    public $information;    
+    public function __construct($information)
     {
-        $this->information = $information;        
-        $this->message = $message;
+        $this->information = $information;                
     }
 
     /**
