@@ -40,10 +40,10 @@ class RegistrarProcessController extends Controller
     }
 
 
-    public function sendNotifRegistered(Request $request, $slug){
+    public function sendNotifRegistered($slug){
                 
         $studentInformation = $this->studentInformation::where('slug', $slug)->first();
-        $mailData = (object) array('student' => $studentInformation, 'message'=>  $request->message);                
+        $mailData = (object) array('student' => $studentInformation, 'message'=>  request('message'));                
         Mail::to($studentInformation->email)->send(
             new RegistrationNotificationMail($mailData)
         );
