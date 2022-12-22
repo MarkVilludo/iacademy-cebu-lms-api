@@ -85,6 +85,7 @@ class PaymentGatewayController extends Controller
             $newPaymentDetails->contact_number = $request->contact_number;
             $newPaymentDetails->name_of_school = @$request->name_of_school;
             $newPaymentDetails->course = @$request->course;
+            $newPaymentDetails->sy_reference = @$request->sy_reference;
 
             $newPaymentDetails->ip_address = @$request->ip();
             $newPaymentDetails->save();
