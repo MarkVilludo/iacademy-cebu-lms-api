@@ -9,7 +9,7 @@ use App\Models\{PaymentDetail, PaymentMode};
 use App\Models\AdmissionStudentInformation;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
-use App\Mail\Registrar\RegistrationNotificationMail;
+use App\Mail\Registrar\{RegistrationNotificationMail, RegistrationConfirmationMail};
 use App\Http\Resources\PaymentDetailResource;
 
 
@@ -63,7 +63,7 @@ class RegistrarProcessController extends Controller
         $mailData = (object) array( 'student' => $studentInformation);                
         
         Mail::to($studentInformation->email)->send(
-            new RegistrationNotificationMail($mailData)
+            new RegistrationConfirmationMail($mailData)
         );
 
         $data['success'] = true;        
