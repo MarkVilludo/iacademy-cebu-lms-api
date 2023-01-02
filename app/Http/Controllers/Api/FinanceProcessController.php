@@ -10,6 +10,7 @@ use App\Models\AdmissionStudentInformation;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
 use App\Http\Resources\PaymentDetailResource;
+use App\Models\{StudentInfoStatusLog};
 
 
 use DB, Mail;
@@ -153,12 +154,16 @@ class FinanceProcessController extends Controller
                 $newPaymentDetails->ip_address = @$request->ip();
                 $newPaymentDetails->save();
 
+                $this->newPaymentDetails->sendEmailAfterPayment($newPaymentDetails);
+
                 if($request->description == "Reservation Payment" && $request->status == "Paid")
                     $student->status = "Reserved";
+                    StudentInfoStatusLog::storeLogs($newPaymentDetails->studentInfo->id, $newPaymentDetails->studentInfo->status, '', '');
                     $student->update();
                 
                 if($request->description == "Application Payment" && $request->status == "Paid"){
                     $student->status = "Waiting For Interview";
+                    StudentInfoStatusLog::storeLogs($newPaymentDetails->studentInfo->id, $newPaymentDetails->studentInfo->status, '', '');
                     $student->update();
                 }
 
