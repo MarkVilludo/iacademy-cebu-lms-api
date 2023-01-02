@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
 use App\Mail\Registrar\{RegistrationNotificationMail, RegistrationConfirmationMail};
 use App\Http\Resources\PaymentDetailResource;
+use App\Models\{StudentInfoStatusLog};
 
 
 use DB, Mail;
@@ -42,7 +43,11 @@ class RegistrarProcessController extends Controller
 
     public function sendNotifRegistered($slug){
                 
-        $studentInformation = $this->studentInformation::where('slug', $slug)->first();
+        $studentInformation = $this->studentInformation::where('slug', $slug)->first();        
+        $studentInformation->status = "Game Changer";                    
+        $studentInformation->update();
+        StudentInfoStatusLog::storeLogs($studentInformation->id, $studentInformation->status, '', '');
+
         $mailData = (object) array( 'student' => $studentInformation, 
                                     'message' =>  request('message'), 
                                     'payment_link' => request('payment_link'));                
@@ -56,9 +61,10 @@ class RegistrarProcessController extends Controller
     }
    
     public function confirmSelectedProgram($slug){
-        $studentInformation = $this->studentInformation::where('slug', $slug)->first();
+        $studentInformation = $this->studentInformation::where('slug', $slug)->first();        
         $studentInformation->status = "Confirmed";                    
         $studentInformation->update();
+        StudentInfoStatusLog::storeLogs($studentInformation->id, $studentInformation->status, '', '');
 
         $mailData = (object) array( 'student' => $studentInformation);                
         
