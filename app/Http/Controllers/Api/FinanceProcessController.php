@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
 use App\Http\Resources\PaymentDetailResource;
 use App\Models\{StudentInfoStatusLog};
+use App\Mail\Admissions\{AdmissionsNotificationEmail};
 
 
 use DB, Mail;
@@ -160,11 +161,27 @@ class FinanceProcessController extends Controller
 
                 if($request->description == "Reservation Payment" && $request->status == "Paid")
                     $student->status = "Reserved";
+                    //Notify Admissions
+                    $mailData = (object) array( 'student' => $student, 
+                                    'message' =>  "Applicant has paid reservation fee", 
+                                    'subject' => "New Reserved Applicant");                
+                    Mail::to("josephedmundcastillo@gmail.com")->send(
+                        new AdmissionsNotificationEmail($mailData)
+                    );
+
                     StudentInfoStatusLog::storeLogs($newPaymentDetails->studentInfo->id, $newPaymentDetails->studentInfo->status, '', '');
                     $student->update();
                 
                 if($request->description == "Application Payment" && $request->status == "Paid"){
                     $student->status = "Waiting For Interview";
+                    //Notify Admissions
+                    $mailData = (object) array( 'student' => $student, 
+                                    'message' =>  "New applicant is waiting for interview link", 
+                                    'subject' => "Waiting for Interview");                
+                    Mail::to("josephedmundcastillo@gmail.com")->send(
+                        new AdmissionsNotificationEmail($mailData)
+                    );
+
                     StudentInfoStatusLog::storeLogs($newPaymentDetails->studentInfo->id, $newPaymentDetails->studentInfo->status, '', '');
                     $student->update();
                 }

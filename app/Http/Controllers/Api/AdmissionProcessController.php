@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
 use App\Http\Resources\Admissions\{StudentInformationResource, AdmissionFileResource};
 use App\Mail\Admissions\{SendAcceptanceLetterMail, SubmitRequirementsMail, ForEnrollmentMail};
-use App\Mail\Admissions\{ForInterviewMail, ForReservationMail, ForEnrollmentRegistrarMail};
+use App\Mail\Admissions\{ForInterviewMail, ForReservationMail};
+use App\Mail\Admissions\{AdmissionsNotificationEmail, ForEnrollmentRegistrarMail};
+
 
 use DB, Mail;
 
