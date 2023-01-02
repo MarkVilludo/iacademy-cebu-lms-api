@@ -30,7 +30,7 @@ class AdmissionsNotificationEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.registrar.admissions_notification')
+        return $this->view('emails.admissions.admissions_notification')
                     ->from('inquirecebu@iacademy.edu.ph', 'iACADEMY Cebu Portal')
                     ->subject('iACADEMY Admissions: '.$this->information->subject.' - ' . $this->information->student->first_name . ' ' . $this->information->student->last_name)
                     ->replyTo('admissionscebu@iacademy.edu.ph', 'iACADEMY Cebu Portal');
