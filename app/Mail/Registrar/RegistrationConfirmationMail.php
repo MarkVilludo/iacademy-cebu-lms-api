@@ -30,7 +30,7 @@ class RegistrationConfirmationMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.registrar.registration_notification')
+        return $this->view('emails.registrar.registration_confirmation_notification')
                     ->from('inquirecebu@iacademy.edu.ph', 'iACADEMY Cebu Portal')
                     ->subject('iACADEMY Registrar: Confirmation Notification - ' . $this->information->student->first_name . ' ' . $this->information->student->last_name)
                     ->replyTo('admissionscebu@iacademy.edu.ph', 'iACADEMY Cebu Portal');
