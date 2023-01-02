@@ -20,8 +20,8 @@
                 is now on going and you can select the program and schedule that applies to you.                
                 
                 <br><br><br>
-                <a href="mailto:inquirecebu@iacademy.edu.ph">Click Here</a> to contact us on what to do next.</a>
-
+                <a href="#">Click Here</a> to confirm selected program.</a>
+                <!---Link to confirm program selected--->
                 Thank you,
             </div>
             <img style="display:block;margin:0 auto; width:800px" width="800" src="https://i.ibb.co/bWzLGKh/cebu-footer.png"
