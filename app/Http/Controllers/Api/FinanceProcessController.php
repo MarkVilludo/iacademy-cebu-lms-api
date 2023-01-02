@@ -154,7 +154,7 @@ class FinanceProcessController extends Controller
                 $newPaymentDetails->ip_address = @$request->ip();
                 $newPaymentDetails->save();
 
-                $this->newPaymentDetails->sendEmailAfterPayment($newPaymentDetails);
+                $this->paymentDetail->sendEmailAfterPayment($newPaymentDetails);
 
                 if($request->description == "Reservation Payment" && $request->status == "Paid")
                     $student->status = "Reserved";
