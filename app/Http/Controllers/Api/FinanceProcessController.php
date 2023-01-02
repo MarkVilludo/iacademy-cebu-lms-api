@@ -159,7 +159,7 @@ class FinanceProcessController extends Controller
 
                 $this->paymentDetail->sendEmailAfterPayment($newPaymentDetails);
 
-                if($request->description == "Reservation Payment" && $request->status == "Paid")
+                if($request->description == "Reservation Payment" && $request->status == "Paid"){
                     $student->status = "Reserved";
                     //Notify Admissions
                     $mailData = (object) array( 'student' => $student, 
@@ -171,7 +171,7 @@ class FinanceProcessController extends Controller
 
                     StudentInfoStatusLog::storeLogs($newPaymentDetails->studentInfo->id, $newPaymentDetails->studentInfo->status, '', '');
                     $student->update();
-                
+                }
                 if($request->description == "Application Payment" && $request->status == "Paid"){
                     $student->status = "Waiting For Interview";
                     //Notify Admissions
