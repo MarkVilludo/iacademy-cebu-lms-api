@@ -32,7 +32,7 @@ class SendAcceptanceLetterMail extends Mailable
     public function build()
     {
         $mail = $this->view('emails.admissions.acceptance_letter')
-                    ->from('markanthony.villudo@gmail.com', 'iACADEMY Cebu LMS')
+                    ->from('inquirecebu@iacademy.edu.ph', 'iACADEMY Cebu LMS')
                     ->subject('iACADEMY Cebu Admissions: Acceptance Letter')
                     ->replyTo('admissionscebu@iacademy.edu.ph', 'iACADEMY Cebu LMS');
 

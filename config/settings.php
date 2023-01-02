@@ -64,7 +64,7 @@ return [
     ],
 
     'admission_staging' => [
-        'email' => 'markanthony.villudo@gmail.com'
+        'email' => 'inquirecebu@iacademy.edu.ph'
     ],	
 
 

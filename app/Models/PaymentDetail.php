@@ -90,7 +90,7 @@ class PaymentDetail extends Model
             $message->to($toEmail, $toName)
                     ->subject($subjectData)
                     ->replyTo('finance@iacademy.edu.ph');
-            $message->from('markanthony.villudo@gmail.com', 'iACADEMY Portal');
+            $message->from('inquirecebu@iacademy.edu.ph', 'iACADEMY Portal');
         });
     }
 
@@ -117,7 +117,7 @@ class PaymentDetail extends Model
             $message->to($toEmail, $toName)
                     ->subject($subjectData)
                     ->replyTo('finance@iacademy.edu.ph');
-            $message->from('markanthony.villudo@gmail.com', 'iACADEMY Portal');
+            $message->from('inquirecebu@iacademy.edu.ph', 'iACADEMY Portal');
         });
     }
 
@@ -144,7 +144,7 @@ class PaymentDetail extends Model
             $message->to($toEmail, $toName)
                     ->subject($subjectData)
                     ->replyTo('finance@iacademy.edu.ph');
-            $message->from('markanthony.villudo@gmail.com', 'iACADEMY Portal');
+            $message->from('inquirecebu@iacademy.edu.ph', 'iACADEMY Portal');
         });
     }
 

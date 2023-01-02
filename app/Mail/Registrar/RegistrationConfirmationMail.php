@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\Admissions;
+namespace App\Mail\Registrar;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\AdmissionStudentInformation;
 
-class InterviewNotificationMail extends Mailable
+class RegistrationConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,10 +17,10 @@ class InterviewNotificationMail extends Mailable
      *
      * @return void
      */
-    public $information;
+    public $information;    
     public function __construct($information)
     {
-        $this->information = $information;        
+        $this->information = $information;                
     }
 
     /**
@@ -30,9 +30,9 @@ class InterviewNotificationMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.admissions.interview_notification')
+        return $this->view('emails.registrar.registration_notification')
                     ->from('inquirecebu@iacademy.edu.ph', 'iACADEMY Cebu Portal')
-                    ->subject('iACADEMY Admissions: Online Application For Interview - ' . $this->information->first_name . ' ' . $this->information->last_name)
+                    ->subject('iACADEMY Registrar: Confirmation Notification - ' . $this->information->student->first_name . ' ' . $this->information->student->last_name)
                     ->replyTo('admissionscebu@iacademy.edu.ph', 'iACADEMY Cebu Portal');
     }
 }

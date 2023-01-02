@@ -55,5 +55,21 @@ class RegistrarProcessController extends Controller
         return response()->json($data, 200);
     }
    
+    public function confirmSelectedProgram($slug){
+        $studentInformation = $this->studentInformation::where('slug', $slug)->first();
+        $studentInformation->status = "Confirmed";                    
+        $studentInformation->update();
+
+        $mailData = (object) array( 'student' => $studentInformation);                
+        
+        Mail::to($studentInformation->email)->send(
+            new RegistrationNotificationMail($mailData)
+        );
+
+        $data['success'] = true;        
+        $data['message'] = 'Program Confirmed';
+        return response()->json($data, 200);
+
+    }
 
 }
