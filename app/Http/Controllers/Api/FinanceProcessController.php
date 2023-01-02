@@ -104,12 +104,14 @@ class FinanceProcessController extends Controller
         $student = $this->studentInformation::where('slug', $slug)->first();
         $data['data'] = new PaymentDetailResource($this->paymentDetail
                                         ->where('student_information_id', $student->id)
-                                        ->where('description', 'Reservation Payment')                                        
+                                        ->where('description', 'Reservation Payment') 
+                                        ->orderByRaw("FIELD(status , 'Paid', 'Pending') ASC")
                                         ->first());
 
         $data['application'] = new PaymentDetailResource($this->paymentDetail
                                         ->where('student_information_id', $student->id)
                                         ->where('description', 'Application Payment')                                        
+                                        ->orderByRaw("FIELD(status , 'Paid', 'Pending') ASC")
                                         ->first());
 
         $data['student_sy'] = $student->syid;
