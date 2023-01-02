@@ -63,6 +63,8 @@ Route::group(['prefix' => 'v1'], function() {
     });
     Route::group(['prefix' => 'registrar'], function() {        
         Route::post('send_notif_registered/{slug}', [RegistrarProcessController::class, 'sendNotifRegistered']);
+        Route::post('confirm_selected_program/{slug}', [RegistrarProcessController::class, 'confirmSelectedProgram']);
+        
         
     });    
 
