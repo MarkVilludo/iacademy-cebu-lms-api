@@ -16,7 +16,7 @@
                 <br><br>
                 Click on the link below to check details.
                 <br><br>
-                <a href="http://103.225.39.200/admissionsV1/view_lead/{{$information->slug}}" target="_blank">View Applicant Details</a>
+                <a href="http://cebu.iacademy.edu.ph/admissionsV1/view_lead/{{$information->slug}}" target="_blank">View Applicant Details</a>
                 <br><br><br>
 
                 Thank you,

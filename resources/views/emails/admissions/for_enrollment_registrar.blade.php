@@ -18,7 +18,7 @@
                 New Student for Enrollment: {!! $information->first_name .' '. $information->last_name !!}
 
                 <br><br>
-                <a href="http://103.225.39.200/unity/student_viewer/{{$information->slug}}" target="_blank">
+                <a href="http://cebu.iacademy.edu.ph/unity/student_viewer/{{$information->slug}}" target="_blank">
                    View Profile
                 </a> 
                 <br><br><br>

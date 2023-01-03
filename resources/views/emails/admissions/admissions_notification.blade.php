@@ -17,7 +17,7 @@
                 {!! $information->message !!}
                 <br><br>
                 Click on the button below to view profile: <br /> <br />
-                <a href="http://103.225.39.200/admissionsV1/view_lead/{{$information->student->slug}}" target="_blank">View Applicant Details</a>                
+                <a href="http://cebu.iacademy.edu.ph/admissionsV1/view_lead/{{$information->student->slug}}" target="_blank">View Applicant Details</a>                
                 <br /><br /><br />
                 
                 Thank you
