@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\PaymentDetail;
 use Illuminate\Http\Request;
 use App\Models\{StudentInfoStatusLog};
+use App\Mail\Admissions\{AdmissionsNotificationEmail};
+
 
 class PaynamicsWebhookController extends Controller
 {
     //
     public function __construct(PaymentDetail $paymentDetail)
     {
-        $this->paymentDetail = $paymentDetail;
+        $this->paymentDetail = $paymentDetail;        
     }
 
     public function webhook(Request $request)
@@ -37,10 +39,22 @@ class PaynamicsWebhookController extends Controller
                 //update student info
                 if ($paymentDetails->studentInfo->status == 'For Reservation') {
                     $paymentDetails->studentInfo->status = 'Reserved';
+                    $mailData = (object) array( 'student' => $paymentDetails->studentInfo, 
+                                    'message' =>  "Applicant has paid reservation fee", 
+                                    'subject' => "New Reserved Applicant");                
+                    Mail::to("josephedmundcastillo@gmail.com")->send(
+                        new AdmissionsNotificationEmail($mailData)
+                    );
                     StudentInfoStatusLog::storeLogs($paymentDetails->studentInfo->id, $paymentDetails->studentInfo->status, '', '');
                     $paymentDetails->studentInfo->update();
                 } else if ($paymentDetails->studentInfo->status == 'New') {
                     $paymentDetails->studentInfo->status = 'Waiting For Interview';
+                    $mailData = (object) array( 'student' => $paymentDetails->studentInfo, 
+                                    'message' =>  "New applicant is waiting for interview link", 
+                                    'subject' => "Waiting for Interview");                
+                    Mail::to("josephedmundcastillo@gmail.com")->send(
+                        new AdmissionsNotificationEmail($mailData)
+                    );
                     StudentInfoStatusLog::storeLogs($paymentDetails->studentInfo->id, $paymentDetails->studentInfo->status, '', '');
                     $paymentDetails->studentInfo->update();
                 }
