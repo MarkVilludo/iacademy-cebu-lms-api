@@ -20,7 +20,7 @@
                 It is not required but we encourage you to let your parent/s join the interview as well.
 
                 <br><br>
-                <a href="http://103.225.39.200//site/applicant_calendar/{{$information->slug}}" target="_blank">calendar link
+                <a href="http://103.225.39.200/site/applicant_calendar/{{$information->slug}}" target="_blank">calendar link
                     here</a>
                 <br><br><br>
 
