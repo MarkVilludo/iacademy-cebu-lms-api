@@ -207,7 +207,7 @@ class FinanceProcessController extends Controller
     public function updateOrNumber(Request $request){
         
         $referer = request()->headers->get('referer');
-        if($referer == "http://cebu.iacademy.edu.ph"){                        
+        if($referer == "http://cebu.iacademy.edu.ph/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);        
             $checkOR = $this->paymentDetail::where('or_number',$request->or_number)->first();
@@ -237,7 +237,7 @@ class FinanceProcessController extends Controller
     public function setPaid(Request $request){
         
         $referer = request()->headers->get('referer');
-        if($referer == "http://cebu.iacademy.edu.ph"){                        
+        if($referer == "http://cebu.iacademy.edu.ph/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);
             $PaymentMode = $this->paymentMode::find($PaymentDetails->mode_of_payment_id);
@@ -267,7 +267,7 @@ class FinanceProcessController extends Controller
     public function deletePayment(Request $request){
         
         $referer = request()->headers->get('referer');
-        if($referer == "http://cebu.iacademy.edu.ph"){                        
+        if($referer == "http://cebu.iacademy.edu.ph/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);
             $PaymentMode = $this->paymentMode::find($PaymentDetails->mode_of_payment_id);
