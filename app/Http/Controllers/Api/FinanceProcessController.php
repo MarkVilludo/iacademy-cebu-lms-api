@@ -125,7 +125,7 @@ class FinanceProcessController extends Controller
     public function manualPayment(Request $request){
         
         $referer = request()->headers->get('referer');
-        if($referer == "http://cebu.iacademy.edu.ph"){
+        if($referer == "http://cebu.iacademy.edu.ph/"){
 
             $requestId =  'mp' . substr(uniqid(), 0, 18);
             $student = $this->studentInformation::where('slug', $request->slug)->first();
