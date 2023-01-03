@@ -197,7 +197,7 @@ class FinanceProcessController extends Controller
         }
         else{
             $data['success'] = false;
-            $data['message'] = "request denied";
+            $data['message'] = "request denied from ".$referer;
         }
         
         
