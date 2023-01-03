@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\{StudentInfoStatusLog};
 use App\Mail\Admissions\{AdmissionsNotificationEmail};
 
+use Mail;
 
 class PaynamicsWebhookController extends Controller
 {
