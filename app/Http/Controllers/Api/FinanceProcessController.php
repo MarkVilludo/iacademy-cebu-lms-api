@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\SubmitInformationMail;
 use App\Http\Resources\PaymentDetailResource;
 use App\Models\{StudentInfoStatusLog};
+use App\Mail\Admissions\{AdmissionsNotificationEmail};
 
 
 use DB, Mail;
@@ -124,7 +125,7 @@ class FinanceProcessController extends Controller
     public function manualPayment(Request $request){
         
         $referer = request()->headers->get('referer');
-        if($referer == "http://103.225.39.200/"){
+        if($referer == "http://cebu.iacademy.edu.ph/"){
 
             $requestId =  'mp' . substr(uniqid(), 0, 18);
             $student = $this->studentInformation::where('slug', $request->slug)->first();
@@ -158,13 +159,29 @@ class FinanceProcessController extends Controller
 
                 $this->paymentDetail->sendEmailAfterPayment($newPaymentDetails);
 
-                if($request->description == "Reservation Payment" && $request->status == "Paid")
+                if($request->description == "Reservation Payment" && $request->status == "Paid"){
                     $student->status = "Reserved";
+                    //Notify Admissions
+                    $mailData = (object) array( 'student' => $student, 
+                                    'message' =>  "Applicant has paid reservation fee", 
+                                    'subject' => "New Reserved Applicant");                
+                    Mail::to("josephedmundcastillo@gmail.com")->send(
+                        new AdmissionsNotificationEmail($mailData)
+                    );
+
                     StudentInfoStatusLog::storeLogs($newPaymentDetails->studentInfo->id, $newPaymentDetails->studentInfo->status, '', '');
                     $student->update();
-                
+                }
                 if($request->description == "Application Payment" && $request->status == "Paid"){
                     $student->status = "Waiting For Interview";
+                    //Notify Admissions
+                    $mailData = (object) array( 'student' => $student, 
+                                    'message' =>  "New applicant is waiting for interview link", 
+                                    'subject' => "Waiting for Interview");                
+                    Mail::to("josephedmundcastillo@gmail.com")->send(
+                        new AdmissionsNotificationEmail($mailData)
+                    );
+
                     StudentInfoStatusLog::storeLogs($newPaymentDetails->studentInfo->id, $newPaymentDetails->studentInfo->status, '', '');
                     $student->update();
                 }
@@ -180,7 +197,7 @@ class FinanceProcessController extends Controller
         }
         else{
             $data['success'] = false;
-            $data['message'] = "request denied";
+            $data['message'] = "request denied from ".$referer;
         }
         
         
@@ -190,7 +207,7 @@ class FinanceProcessController extends Controller
     public function updateOrNumber(Request $request){
         
         $referer = request()->headers->get('referer');
-        if($referer == "http://103.225.39.200/"){                        
+        if($referer == "http://cebu.iacademy.edu.ph/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);        
             $checkOR = $this->paymentDetail::where('or_number',$request->or_number)->first();
@@ -220,7 +237,7 @@ class FinanceProcessController extends Controller
     public function setPaid(Request $request){
         
         $referer = request()->headers->get('referer');
-        if($referer == "http://103.225.39.200/"){                        
+        if($referer == "http://cebu.iacademy.edu.ph/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);
             $PaymentMode = $this->paymentMode::find($PaymentDetails->mode_of_payment_id);
@@ -250,7 +267,7 @@ class FinanceProcessController extends Controller
     public function deletePayment(Request $request){
         
         $referer = request()->headers->get('referer');
-        if($referer == "http://103.225.39.200/"){                        
+        if($referer == "http://cebu.iacademy.edu.ph/"){                        
             
             $PaymentDetails = $this->paymentDetail::find($request->id);
             $PaymentMode = $this->paymentMode::find($PaymentDetails->mode_of_payment_id);

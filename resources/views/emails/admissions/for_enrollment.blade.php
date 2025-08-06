@@ -20,7 +20,7 @@
                 is now on going and you can select the program and schedule that applies to you.                
                 
                 <br><br><br>
-                <a href="http://103.225.39.200/cebu-iac-lms/unity/confirm_program/{{$information->slug}}">Click Here</a> to confirm selected program.</a>
+                <a href="http://cebu.iacademy.edu.ph/unity/confirm_program/{{$information->slug}}">Click Here</a> to confirm selected program.</a>
                 <!---Link to confirm program selected--->
                 Thank you,
             </div>
