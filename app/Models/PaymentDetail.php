@@ -116,7 +116,7 @@ class PaymentDetail extends Model
         Mail::send('emails.finance.notify_expired_transaction', $data, function ($message) use ($toName, $toEmail, $subjectData) {
             $message->to($toEmail, $toName)
                     ->subject($subjectData)
-                    ->replyTo('finance@iacademy.edu.ph');
+                    ->replyTo('financecebu@iacademy.edu.ph');
             $message->from('inquirecebu@iacademy.edu.ph', 'iACADEMY Portal');
         });
     }
